@@ -62,7 +62,6 @@ decidable by tools like this will likewise grow.
     Olveczky Meseguer Talcott - 2006
 
 ---
-references:
 -   id: real-time-maude-semantics-pragrmatics
     type: article-journal
     author:
@@ -86,9 +85,64 @@ references:
 Abstraction and Completeness for Real-Time Maude - Olveczky Meseguer - 2007
 ===========================================================================
 
+The authors present the completeness argument for Real-Time Maude, relative to a
+selecting the maximal time-sampling strategy. Real-Time Maude uses a theory
+transformation from a real-time rewrite theory to a normal rewrite theory (and a
+corresponding transformation on the query supplied as well); to establish
+completeness for the resulting analysis a *$\Pi$-stuttering bisimulation* is
+established between the original theory and the transformed one, where $\Pi$ is
+a pre-determined set of atomic predicates over the states of the system.
+
+To establish completeness, a notion of *time-robustness* is defined, which
+essentially means that either the system is in a steady-state forever, or that
+the system can take maximal time-steps without missing out on interesting
+behaviors. Additionally, the set $\Pi$ of atomic predicates must have
+*tick-invariance* or *tick-stabilization* (for bounded-time and unbounded-time
+analysis respectively). Tick-stabilization is the property that in a sequence of
+non-maximal rewrites followed by a maximal rewrite, the set $\Pi$ of atomic
+predicates can only change their valuations once (and not at all for $\inf$
+rewrites). Tick-invariance states that the set $\Pi$ of atomic predicates can
+only change their valuations on maximal rewrites (not on non-maximal rewrites or
+$\inf$ rewrites), which implies tick-stabilization. Tick-stabilization ensures
+that no behavior will be missed in taking maximal steps when simulating (so that
+a bisimulation can be established), allowing much quicker analysis.
+Tick-invariance ensures that during a bounded analysis, no matter what the
+time-bound is set on the analysis, the final state reached will not miss
+behaviors and once again a bisimulation can be established.
+
+The case of object-oriented timed modules is also considered, where the system
+state is a multiset of objects and messages. Here, the time-robustness
+properties simplify to a much easier-to-check set of properties in practice,
+allowing for faster verification that the analysis of Real-Time Maude is
+complete. This reduction relies on the definition of two functions `delta:
+Configuration Time -> Configuration` (update function) and `mte: Configuration
+-> Time` (maximum time elapse), which help to calculate the maximal time-step
+and corresponding transitions of the system.
+
+Finally, in an earlier version of the paper, an unclocked analysis is presented.
+Here, the clock portion of the global system state is projected out, resulting
+in the same real-time rewrite theory but without the tick rules. A similar
+bisimulation is established between the real-time rewrite theory and the
+unclocked theory, which gives completeness of the resulting analysis. The
+benefit here is that without the time component of the state, the state-space
+becomes much smaller and easier to exhaustively explore. Of course, the types of
+properties that can be expressed and verified can no longer include elements of
+time (eg. "before/after time $r$ we have $\phi$"), but this provides a
+potentially very fast semi-decision procedure (may not terminate) for a large
+number of properties.
+
+### References
+
+-   Mechanical Verification of Reactive Systems
+    Manolios - 2001
+-   Theoroidal  Maps as Algebraic Simulations
+    Marti-Oliet Meseguer Palomino - 2005
+-   A Categorical Aproach to Simulations
+    Palomino Meseguer Marti-Oliet - 2005
+-   Generalized Rewrite Theories
+    Bruni Meseguer - 2003
 
 ---
-references:
 -   id: real-time-maude-abstraction-completeness
     type: article-journal
     author:
