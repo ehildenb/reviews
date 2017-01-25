@@ -63,7 +63,7 @@ decidable by tools like this will likewise grow.
 
 ---
 references:
--   id: Ölveczky2007
+-   id: real-time-maude-semantics-pragrmatics
     type: article-journal
     author:
     -   family: Ölveczky
@@ -80,4 +80,31 @@ references:
     URL: http://dx.doi.org/10.1007/s10990-007-9001-5
     DOI: 10.1007/s10990-007-9001-5
     ISSN: 1573-0557
+...
+
+
+Abstraction and Completeness for Real-Time Maude - Olveczky Meseguer - 2007
+===========================================================================
+
+
+---
+references:
+-   id: real-time-maude-abstraction-completeness
+    type: article-journal
+    author:
+    -   family: Ölveczky
+        given: Peter Csaba
+    -   family: Meseguer
+        given: José
+    issued:
+    -   year: 2007
+        month: 7
+    title: Abstraction and completeness for real-time maude
+    container-title: Electronic Notes in Theoretical Computer Science
+    publisher: Elsevier
+    page: 5-27
+    volume: 176
+    issue: 4
+    DOI: 10.1016/j.entcs.2007.06.005
+    ISSN: 1571-0661
 ...
