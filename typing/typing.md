@@ -1,6 +1,24 @@
 Polymorphism, Subtyping, and Type Inference in MLsub
 ====================================================
 
+Abstract
+--------
+
+We present a type system combining subtyping and ML-style parametric
+polymorphism. Unlike previous work, our system supports type inference and has
+compact principal types. We demonstrate this system in the minimal language
+MLsub, which types a strict superset of core ML programs.
+
+This is made possible by keeping a strict separation between the types used to
+describe inputs and those used to describe outputs, and extending the classical
+unification algorithm to handle subtyping constraints between these input and
+output types. Principal types are kept compact by type simplification, which
+exploits deep connections between subtyping and the algebra of regular
+languages. An implementation is available online.
+
+Summary
+-------
+
 The authors present a type system called MLsub, which supports ML-like typing
 along with arbitrary recursive types and subtyping. Their language includes
 base-type `Bool`, along with `let ... in ...` bindings. Additionally, type
@@ -47,7 +65,8 @@ by the paper, type-systems with subtypes often yield large/unwieldly types).
 They claim that their algorithm is efficient enough to retype an entire program
 on each key-stroke in their online interface.
 
-### References
+References
+----------
 
 -   Algebraic Subtyping (Thesis)
     Dolan - 2016
@@ -67,7 +86,6 @@ on each key-stroke in their online interface.
     issued:
     -   year: 2017
     title: Polymorphism, subtyping, and type inference in mLsub
-    container-title: Proceedings of the 44th ACM SIGPLAN symposium on principles of
-      programming languages, POPL 2017, paris, france, january 18-20, 2017
+    container-title: Proceedings of the 44th ACM SIGPLAN symposium on principles of programming languages, POPL 2017, paris, france, january 18-20, 2017
     page: 60-72
 ...

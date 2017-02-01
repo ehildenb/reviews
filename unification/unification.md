@@ -1,6 +1,20 @@
 An Effecient Unification Algorithm - Martelli Montanari - 1982
 ==============================================================
 
+Abstract
+--------
+
+The unification problem in f'mst-order predicate calculus is described in
+general terms as the solution of a system of equations, and a nondeterministic
+algorithm is given. A new unification algorithm, characterized by having the
+acyclicity test efficiently embedded into it, is derived from the
+nondeterministic one, and a PASCAL implementation is given. A comparison with
+other well-known unification algorithms shows that the algorithm described here
+performs well in all cases.
+
+Summary
+-------
+
 The authors define the unification problem as the solution to a set of
 equations, also providing definitions for *most general unifier* and the *solved
 form* of a unification problem: a set of equations in the form ${x_1 = t_1, ...,
@@ -21,7 +35,8 @@ algorithms, and shown to perform good in three extreme cases, whereas the others
 perform poorly in at least one case, leading the authors to conclude that their
 algorithm will perform better in most applications of unification algorithms.
 
-### References
+References
+----------
 
 -   Proving Program Properties, Symbolic Evaluation and Logical Precedural Semantics
     Levi Serovich - 1975
@@ -47,6 +62,19 @@ algorithm will perform better in most applications of unification algorithms.
 
 Solving Equations in Abstract Algebra: A Rule-Based Survey of Unification - Jouannaud Kirchner - 1991
 =====================================================================================================
+
+Abstract
+--------
+
+We argue that unification is nothing but solving equations in abstract algebras
+by showing that unification algorithms can be easily described by sets of rules
+operating on equations. This approach eases the understanding of unification
+algorithms, as well as their correctness proof. Standard unification,
+unification in equational theories, order-sorted unification, as well as
+higher-order unification will be surveyed from this systematic point of view.
+
+Summary
+-------
 
 This paper is a survey of the field of unification up to 1991. A general
 framework is proposed for posing unification problems, in which many special
@@ -80,7 +108,8 @@ explored. The higher-order case is a special case of the semantic unification
 case, but can also be taken on its own as a problem of unification in the typed
 $\lambda$-calculus.
 
-### References
+References
+----------
 
 -   Unification in a Combination of Overloaded Order-Sorted Theories
     Boudet - 1991

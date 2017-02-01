@@ -1,6 +1,32 @@
 Semantics and Pragrmatics of Real-Time Maude - Olveczky Meseguer - 2007
 =======================================================================
 
+Abstract
+--------
+
+At present, designers of real-time systems face a dilemma between expressiveness
+and automatic verification: if they can specify some aspects of their system in
+some automaton-based formalism, then automatic verification is possible; but
+more complex system components may be hard or impossible to express in such
+decidable formalisms. These more complex components may still be simulated; but
+there is then little support for their formal analysis. The main goal of
+Real-Time Maude is to provide a way out of this dilemma, while complementing
+both decision procedures and simulation tools. Real-Time Maude emphasizes ease
+and generality of specification, including support for distributed real-time
+object-based systems. Because of its generality, falling outside of decidable
+system classes, the formal analyses supported—including symbolic simulation,
+breadth-first search for failures of safety properties, and model checking of
+time-bounded temporal logic properties—are in general incomplete (although they
+are complete for discrete time). These analysis techniques have been shown
+useful in finding subtle bugs of complex systems, clearly outside the scope of
+current decision procedures. This paper describes both the semantics of
+Real-Time Maude specifications, and of the formal analyses supported by the
+tool. It also explains the tool's pragmatics, both in the use of its features,
+and in its application to concrete examples.
+
+Summary
+-------
+
 The authors describe the Real-Time Maude tool, which provides a language for
 specifying and analyzing real-time systems (including hybrid systems and timed
 automata) using Rewriting Logic. A series of transformations are applied to the
@@ -46,7 +72,8 @@ real one (sound but not complete). As the bounds are pushed on sybolic model
 checking and incorporating decision procedures into Maude, the class of systems
 decidable by tools like this will likewise grow.
 
-### References
+References
+----------
 
 -   Logics and Models of Real Time: A Survey
     Alur Henzinger - 1992
@@ -76,14 +103,31 @@ decidable by tools like this will likewise grow.
     page: 161-196
     volume: 20
     issue: 1
-    URL: http://dx.doi.org/10.1007/s10990-007-9001-5
-    DOI: 10.1007/s10990-007-9001-5
-    ISSN: 1573-0557
 ...
 
 
 Abstraction and Completeness for Real-Time Maude - Olveczky Meseguer - 2007
 ===========================================================================
+
+Abstract
+--------
+
+This paper presents criteria that guarantee completeness of Real-Time Maude
+search and temporal logic model checking analyses, under the maximal time
+sampling strategy, for a large class of real-time systems. As a special case, we
+characterize simple conditions for such completeness for object-oriented
+real-time systems, and show that these conditions can often be easily proved
+even for large and complex systems, such as advanced wireless sensor network
+algorithms and active network multicast protocols. Our results provide
+completeness and decidability of timebounded search and model checking for a
+large and useful class of dense-time nonZeno real-time systems far beyond the
+class of automaton-based real-time systems for which well known decision
+procedures exist. For discrete time, our results justify abstractions that can
+drastically reduce the state space to make search and model checking analyses
+feasible.
+
+Summary
+-------
 
 The authors present the completeness argument for Real-Time Maude, relative to a
 selecting the maximal time-sampling strategy. Real-Time Maude uses a theory
@@ -131,7 +175,8 @@ time (eg. "before/after time $r$ we have $\phi$"), but this provides a
 potentially very fast semi-decision procedure (may not terminate) for a large
 number of properties.
 
-### References
+References
+----------
 
 -   Mechanical Verification of Reactive Systems
     Manolios - 2001
@@ -159,6 +204,4 @@ number of properties.
     page: 5-27
     volume: 176
     issue: 4
-    DOI: 10.1016/j.entcs.2007.06.005
-    ISSN: 1571-0661
 ...

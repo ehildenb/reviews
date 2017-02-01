@@ -1,7 +1,8 @@
 Construction of Abstract State Graphs with PVS - Graf Saidi - 1997
 ==================================================================
 
-### Abstract 
+Abstract 
+---------
 
 In this paper, we propose a method for the automatic construction of an abstract
 state graph of an arbitrary system using the PVS theorem prover.  Given a
@@ -13,7 +14,8 @@ computed using the PVS theorem prover by verifying for each index $i$ if
 $\varphi_i$ or $\neg\varphi_i$ is a postcondition of it. This allows an abstract
 state space exploration for arbitrary programs.
 
-### Summary
+Summary
+-------
 
 The authors define a particular abstraction scheme for an arbitrary system using
 the PVS theorem prover. Abstraction schemes had been proposed before, though
@@ -69,7 +71,8 @@ analysis to strengthen the invariant, the property was proved automatically. The
 scheme was also used in automatic verification of a bounded retransmission
 protocol, which had only previously been verified with heavy user interaction.
 
-### References
+References
+----------
 
 -   Abstract interpretation: A Unified Lattice Model for Static Analysis of Programs by Constructions or Approximations of Fixpoints
     Cousot Cousot - 1977
