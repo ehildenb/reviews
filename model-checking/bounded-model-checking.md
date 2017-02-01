@@ -341,3 +341,68 @@ promising.
     publisher-place: Berlin, Heidelberg
     page: 66-81
 ---
+
+Checking Safety Properties Using Induction and a SAT-Solver - Sheeran Singh Stålmarck - 2002
+============================================================================================
+
+Abstract
+--------
+
+We take a fresh look at the problem of how to check safety properties of finite
+state machines. We are particularly interested in checking safety properties
+with the help of a SAT-solver. We describe some novel induction-based methods,
+and show how they are related to more standard fixpoint algorithms for
+invariance checking. We also present preliminary experimental results in the
+verification of FPGA cores. This demonstrates the practicality of combining a
+SAT-solver with induction for safety property checking of hardware in a real
+design flow.
+
+---
+references:
+-   id: checking-safety-using-induction.pdf
+    type: chapter
+    author:
+    -   family: Sheeran
+        given: Mary
+    -   family: Singh
+        given: Satnam
+    -   family: Stålmarck
+        given: Gunnar
+    editor:
+    -   family: Hunt
+        given: Warren A.
+    -   family: Johnson
+        given: Steven D.
+    issued:
+    -   year: 2000
+    title: Checking safety properties using induction and a sAT-solver
+    container-title: 'Formal methods in computer-aided design: Third international conference, fMCAD 2000 austin, tX, uSA, november 1–3, 2000 proceedings'
+    publisher: Springer Berlin Heidelberg
+    publisher-place: Berlin, Heidelberg
+    page: 127-144
+---
+
+Model Checking Embedded C Software using k-Induction and Invariants (extended version)
+======================================================================================
+
+Abstract
+--------
+
+We present a proof by induction algorithm, which combines k-induction with
+invariants to model check embedded C software with bounded and unbounded loops.
+The k-induction algorithm consists of three cases: in the base case, we aim to
+find a counterexample with up to k loop unwindings; in the forward condition, we
+check whether loops have been fully unrolled and that the safety property P
+holds in all states reachable within k unwindings; and in the inductive step, we
+check that whenever P holds for k unwindings, it also holds after the next
+unwinding of the system. For each step of the k-induction algorithm, we infer
+invariants using affine constraints (i.e., polyhedral) to specify pre- and
+post-conditions. Experimental results show that our approach can handle a wide
+variety of safety properties in typical embedded software applications from
+telecommunications, control systems, and medical devices; we demonstrate an
+improvement of the induction algorithm effectiveness if compared to other
+approaches.
+
+---
+-   id: model-checking-c-k-induction-invariants.pdf
+---
