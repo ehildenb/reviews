@@ -38,43 +38,7 @@ significant problems outperforms CBMC.
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 146-162
-...
-
-Constraint-Based Deductive Model Checking - Delzanno Podelski - 2001
-====================================================================
-
-Abstract
---------
-
-We show that constraint logic programming (CLP) can serve as a conceptual basis
-and as a practical implementation platform for the model checking of
-infinite-state systems. CLP programs are logical formulas (built up from
-constraints) that have both a logical interpretation and an operational
-semantics. Our contributions are: (1) a translation of concurrent systems
-(imperative programs) into CLP programs with the same operational semantics; and
-(2) a deductive method for verifying safety and liveness properties of the
-systems which is based on the logical interpretation of the CLP programs
-produced by the translation. We have implemented the method in a CLP system and
-verified well-known examples of infinite-state programs over integers, using
-linear constraints here as opposed to Presburger arithmetic as in previous
-solutions.
-
 ---
--   id: model-checking-constraint-based-deduction
-    type: article-journal
-    author:
-    -   family: Delzanno
-        given: Giorgio
-    -   family: Podelski
-        given: Andreas
-    issued:
-    -   year: 2001
-    title: Constraint-based deductive model checking
-    container-title: International Journal on Software Tools for Technology Transfer
-    page: 250-270
-    volume: 3
-    issue: 3
-...
 
 Accelerating High-Level Bounded Model Checking - Ganai Gupta - 2006
 ===================================================================
@@ -86,10 +50,10 @@ SAT-based Bounded Model Checking (BMC) has been found promising in finding deep
 bugs in industry designs and scaling well with design sizes. However, it has
 limitations due to requirement of finite data paths, inefficient translations
 and loss of high-level design information during the BMC problem formulation.
-These shortcomings inherent in Booleanlevel BMC can be avoided by using
+These shortcomings inherent in Boolean-level BMC can be avoided by using
 high-level BMC. We propose a novel framework for high-level BMC, which includes
 several techniques that extract high-level design information from EFSM models
-to make the verification model “BMC friendly”, and use it on-the-fly to simplify
+to make the verification model "BMC friendly", and use it on-the-fly to simplify
 the BMC problem instances. Such techniques overcome the inherent limitations of
 Boolean-level BMC, while allowing integration of state-of-theart techniques for
 BMC. In our controlled experiments we found signficant performance improvements
@@ -109,7 +73,7 @@ achievable by the proposed techniques.
     container-title: In proceedings of the 2006 iEEE/ACM international conference on computer-aided design, iCCAD ’06
     publisher: ACM
     page: 794-801
-...
+---
 
 Completeness in SMT-Based BMC for Software Programming - Ganai Gupta - 2008
 ===========================================================================
@@ -145,7 +109,7 @@ approaches.
     container-title: Design, automation and test in europe, DATE 2008, munich, germany,
       march 10-14, 2008
     page: 831-836
-...
+---
 
 Towards SMT Model Checking of Array-Based Systems - Ghilardi Nicolini Ranise Zucchelli - 2008
 =============================================================================================
@@ -188,7 +152,7 @@ be fully mechanized.
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 67-82
-...
+---
 
 MCMT: A Model Checker Modulo Theories - Ghilardi Ranise - 2010
 ==============================================================
@@ -230,7 +194,7 @@ programs, parametrised, timed, and distributed systems.
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 22-29
-...
+---
 
 Light-weight SMT-Based Model Checking - Ghilardi Ranise Valsecchi - 2009
 ========================================================================
@@ -239,10 +203,10 @@ Abstract
 --------
 
 Recently, the notion of an array-based system has been introduced as an
-abstraction of infinite state sys- tems (such as mutual exclusion protocols or
+abstraction of infinite state systems (such as mutual exclusion protocols or
 sorting programs) which allows for model checking of invariant (safety) and
 recurrence (liveness) properties by Satisfiability Modulo Theories (SMT)
-techniques. Unfortu- nately, the use of quantified first-order formulae to
+techniques. Unfortunately, the use of quantified first-order formulae to
 describe sets of states makes fix-point checking extremely expensive. In this
 paper, we show how invariant properties for a sub-class of array-based systems
 can be model-checked by a backward reachability algorithm where the length of
@@ -271,7 +235,7 @@ prototype implementation of our approach.
     page: 85-102
     volume: 250
     issue: 2
-...
+---
 
 Model Checking Using SMT and Theory of Lists - Milicevic Kugler - 2011
 ======================================================================
@@ -320,66 +284,7 @@ Live Sequence Charts.
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 282-297
-...
-
-Model Checking as Constraint Solving - Podelski 2000
-====================================================
-
-Abstract
---------
-
-We show how model checking procedures for different kinds of infinite-state
-systems can be formalized as a generic constraint-solving procedure, viz. the
-saturation under a parametric set of inference rules. The procedures can be
-classified by the solved form they are to compute. This solved form is a
-recursive (automaton-like) definition of the set of states satisfying the given
-temporal property in the case of systems over stacks or other symbolic data.
-
 ---
--   id: model-checking-constraint-solving
-    type: chapter
-    author:
-    -   family: Podelski
-        given: Andreas
-    editor:
-    -   family: Palsberg
-        given: Jens
-    issued:
-    -   year: 2000
-    title: Model checking as constraint solving
-    container-title: 'Static analysis: 7th international symposium, sAS 2000, santa barbara, cA, uSA, june 29 - july 1, 2000. proceedings'
-    publisher: Springer Berlin Heidelberg
-    publisher-place: Berlin, Heidelberg
-    page: 22-37
-...
-
-A Logical Reconstruction of Reachability - Rybina Voronkov - 2003
-=================================================================
-
-Abstract
---------
-
-In this paper we discuss reachability analysis for infinite-state systems.
-Infinite-state systems are formalized using transition systems over a
-first-order structure. We establish a common ground relating a large class of
-algorithms by analyzing the connections between the symbolic representation of
-transition systems and formulas used in various reachability algorithms. Our
-main results are related to the so-called guarded assignment systems.
-
----
--   id: logical-reconstruction-reachability
-    type: paper-conference
-    author:
-    -   family: Rybina
-        given: Tatiana
-    -   family: Voronkov
-        given: Andrei
-    issued:
-    -   year: 2003
-    title: A logical reconstruction of reachability
-    container-title: Perspectives of systems informatics, 5th international andrei ershov memorial conference, PSI 2003, akademgorodok, novosibirsk, russia, july 9-12, 2003, revised papers
-    page: 222-237
-...
 
 An SMT Approach to Bounded Reachability Analysis of Model Programs - Veanes Bjorner Raschke - 2008
 ==================================================================================================
@@ -429,7 +334,7 @@ result from the comprehension expressions.
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 53-68
-...
+---
 
 Bounded Model Checking of Analog and Mixed-Signal Circuits Using an SMT Solver - Walter Little Myers - 2007
 ===========================================================================================================
@@ -478,4 +383,4 @@ promising.
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 66-81
-...
+---

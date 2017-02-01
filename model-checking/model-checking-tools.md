@@ -1,5 +1,5 @@
-nuXmv 1.0 User Manual - Bozzano Cavada Cimatti Dorigatti Griggio Mariotti Micheli Move Roveri Tonetta - 2014
-============================================================================================================
+The nuXmv Symbolic Model Checker - Cavada Cimatti Dorigatti Griggio Mariotti Micheli Mover Roveri Tonetta - 2014
+================================================================================================================
 
 Abstract
 --------
@@ -57,7 +57,7 @@ under the European Commission’s Seventh Framework Programme (FP7).
   publisher: Springer International Publishing
   publisher-place: Cham
   page: 334-342
-...
+---
 
 SAL 2 - Moura Owre Ruess Rushby Shankar Sorea Tiwari - 2004
 ===========================================================
@@ -111,4 +111,4 @@ attractive to those seeking an experimental platform.
     publisher-place: Boston, MA
     page: 496-500
     volume: 3114
-...
+---

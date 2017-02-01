@@ -88,4 +88,4 @@ References
     title: Polymorphism, subtyping, and type inference in mLsub
     container-title: Proceedings of the 44th ACM SIGPLAN symposium on principles of programming languages, POPL 2017, paris, france, january 18-20, 2017
     page: 60-72
-...
+---

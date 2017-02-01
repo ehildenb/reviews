@@ -97,4 +97,4 @@ References
     container-title: Computer Aided Verification
     page: 72-83
     DOI: 10.1007/3-540-63166-6_10
-...
+---

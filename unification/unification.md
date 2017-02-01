@@ -58,7 +58,7 @@ References
     page: 258-282
     volume: 4
     issue: 2
-...
+---
 
 Solving Equations in Abstract Algebra: A Rule-Based Survey of Unification - Jouannaud Kirchner - 1991
 =====================================================================================================
@@ -150,4 +150,4 @@ References
     title-short: Solving equations in abstract algebras
     container-title: Computational logic - essays in honor of alan robinson
     page: 257-321
-...
+---
