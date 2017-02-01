@@ -65,6 +65,48 @@ solutions.
     issue: 3
 ---
 
+MCMT: A Model Checker Modulo Theories - Ghilardi Ranise - 2010
+==============================================================
+
+Abstract
+--------
+
+We describe mcmt, a fully declarative and deductive symbolic model checker for
+safety properties of infinite state systems whose state variables are arrays.
+Theories specify the properties of the indexes and the elements of the arrays.
+Sets of states and transitions of a system are described by quantified
+first-order formulae. The core of the system is a backward reachability
+procedure which symbolically computes pre-images of the set of unsafe states and
+checks for safety and fix-points by solving Satisfiability Modulo Theories (SMT)
+problems. Besides standard SMT techniques, efficient heuristics for quantifier
+instantiation, specifically tailored to model checking, are at the very heart of
+the system. mcmt has been successfully applied to the verification of imperative
+programs, parametrised, timed, and distributed systems.
+
+---
+-   id: mcmt-model-checker-modulo-theories
+    type: chapter
+    author:
+    -   family: Ghilardi
+        given: Silvio
+    -   family: Ranise
+        given: Silvio
+    editor:
+    -   family: Giesl
+        given: Jürgen
+    -   family: Hähnle
+        given: Reiner
+    issued:
+    -   year: 2010
+    title: 'MCMT: A model checker modulo theories'
+    title-short: MCMT
+    container-title: 'Automated reasoning: 5th international joint conference, iJCAR
+      2010, edinburgh, uK, july 16-19, 2010. proceedings'
+    publisher: Springer Berlin Heidelberg
+    publisher-place: Berlin, Heidelberg
+    page: 22-29
+---
+
 A Logical Reconstruction of Reachability - Rybina Voronkov - 2003
 =================================================================
 
@@ -317,6 +359,57 @@ effectiveness of the proposed optimizations.
     publisher-place: Berlin, Heidelberg
     page: 277-293
 ---
+
+An Analysis of SAT-Based Model Checking Techniques in an Industrial Environment - Amla Du Kuehlmann Kurshan McMillan - 2005
+===========================================================================================================================
+
+Abstract
+--------
+
+Model checking is a formal technique for automatically verifying that a
+finite-state model satisfies a temporal property. In model checking, generally
+Binary Decision Diagrams (BDDs) are used to efficiently encode the transition
+relation of the finite-state model. Recently model checking algorithms based on
+Boolean satisfiability (SAT) procedures have been developed to complement the
+traditional BDD-based model checking. These algorithms can be broadly classified
+into three categories: (1) bounded model checking which is useful for finding
+failures (2) hybrid algorithms that combine SAT and BDD based methods for
+unbounded model checking, and (3) purely SAT-based unbounded model checking
+algorithms. The goal of this paper is to provide a uniform and comprehensive
+basis for evaluating these algorithms. The paper describes eight bounded and
+unbounded techniques, and analyzes the performance of these algorithms on a
+large and diverse set of hardware benchmarks.
+
+---
+references:
+-   id: sat-based-model-checking-analysis
+    type: chapter
+    author:
+    -   family: Amla
+        given: Nina
+    -   family: Du
+        given: Xiaoqun
+    -   family: Kuehlmann
+        given: Andreas
+    -   family: Kurshan
+        given: Robert P.
+    -   family: McMillan
+        given: Kenneth L.
+    editor:
+    -   family: Borrione
+        given: Dominique
+    -   family: Paul
+        given: Wolfgang
+    issued:
+    -   year: 2005
+    title: An analysis of sAT-based model checking techniques in an industrial environment
+    container-title: 'Correct hardware design and verification methods: 13th iFIP
+      wG 10.5 advanced research working conference, cHARME 2005, saarbrücken, germany,
+      october 3-6, 2005. proceedings'
+    publisher: Springer Berlin Heidelberg
+    publisher-place: Berlin, Heidelberg
+    page: 254-268
+...
 
 PKind: A parallel k-induction based model checker - Bahsai Tinelli - 2011
 =========================================================================

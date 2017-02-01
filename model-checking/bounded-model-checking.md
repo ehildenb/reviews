@@ -33,8 +33,7 @@ significant problems outperforms CBMC.
     issued:
     -   year: 2006
     title: Bounded model checking of software using SMT solvers instead of SAT solvers
-    container-title: 'Model checking software: 13th international sPIN workshop, vienna,
-      austria, march 30 - april 1, 2006. proceedings'
+    container-title: 'Model checking software: 13th international sPIN workshop, vienna, austria, march 30 - april 1, 2006. proceedings'
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 146-162
@@ -152,48 +151,6 @@ be fully mechanized.
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 67-82
----
-
-MCMT: A Model Checker Modulo Theories - Ghilardi Ranise - 2010
-==============================================================
-
-Abstract
---------
-
-We describe mcmt, a fully declarative and deductive symbolic model checker for
-safety properties of infinite state systems whose state variables are arrays.
-Theories specify the properties of the indexes and the elements of the arrays.
-Sets of states and transitions of a system are described by quantified
-first-order formulae. The core of the system is a backward reachability
-procedure which symbolically computes pre-images of the set of unsafe states and
-checks for safety and fix-points by solving Satisfiability Modulo Theories (SMT)
-problems. Besides standard SMT techniques, efficient heuristics for quantifier
-instantiation, specifically tailored to model checking, are at the very heart of
-the system. mcmt has been successfully applied to the verification of imperative
-programs, parametrised, timed, and distributed systems.
-
----
--   id: mcmt-model-checker-modulo-theories
-    type: chapter
-    author:
-    -   family: Ghilardi
-        given: Silvio
-    -   family: Ranise
-        given: Silvio
-    editor:
-    -   family: Giesl
-        given: Jürgen
-    -   family: Hähnle
-        given: Reiner
-    issued:
-    -   year: 2010
-    title: 'MCMT: A model checker modulo theories'
-    title-short: MCMT
-    container-title: 'Automated reasoning: 5th international joint conference, iJCAR
-      2010, edinburgh, uK, july 16-19, 2010. proceedings'
-    publisher: Springer Berlin Heidelberg
-    publisher-place: Berlin, Heidelberg
-    page: 22-29
 ---
 
 Light-weight SMT-Based Model Checking - Ghilardi Ranise Valsecchi - 2009
