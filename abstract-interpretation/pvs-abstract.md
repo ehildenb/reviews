@@ -17,17 +17,17 @@ the set of $3^l + 1$ monomials of these predicates, where a monomial is a
 conjunction of $\hat\varphi_i$ and $\neg\hat{\varphi_i}$. This forms a complete
 lattice where the ordering is implication, the meet (greatest lower bound) is
 conjunction, and the join (least upper bound) is a weaker operator than
-disjunction such that $(\hat\varphi_1 \wedge \hat\varphi_2) \sqcup
-(\hat\varphi_2 \wedge \hat\varphi_3) = \hat\varphi_2$. 
+disjunction such that
+$(\hat\varphi_1 \wedge \hat\varphi_2) \sqcup (\hat\varphi_2 \wedge \hat\varphi_3) = \hat\varphi_2$.
 
-The concretization $\gamma$ of an abstract state $\hat m$ is simply $\gamma(\hat
-m) = \hat m[\varphi_i/\hat\varphi_i]$. That is, every abstract predicate is
-substituded with its corresponding concrete predicate. For each concrete
-transition, the abstract successor of an abstract state $\hat m$ (denoted
-$\tau_i^A(\hat m)$) is $false$ if in the concretization of $\hat m$, the
-negation of the guard can be proved ($\gamma(\hat m) \Rightarrow \neg g_i$). The
-abstract predicate $\hat\varphi_j$ is present in the abstract successor of $\hat
-m$ if all successors of states satisfying $\gamma(\hat m)$ satisfy
+The concretization $\gamma$ of an abstract state $\hat m$ is simply
+$\gamma(\hat m) = \hat m[\varphi_i/\hat\varphi_i]$. That is, every abstract
+predicate is substituded with its corresponding concrete predicate. For each
+concrete transition, the abstract successor of an abstract state $\hat m$
+(denoted $\tau_i^A(\hat m)$) is $false$ if in the concretization of $\hat m$,
+the negation of the guard can be proved ($\gamma(\hat m) \Rightarrow \neg g_i$).
+The abstract predicate $\hat\varphi_j$ is present in the abstract successor of
+$\hat m$ if all successors of states satisfying $\gamma(\hat m)$ satisfy
 $\varphi_j$. Similarly for $\neg\hat\varphi_j$. Since the implications can be
 dischared to PVS, the PVS theorem prover is used to "compute" the successor of
 an abstract state.
@@ -40,7 +40,7 @@ arbitrary disjunctions of abstract states and applying the abstract transition
 only to canonical monomials. Both these invariants can be improved with an
 iterative backward analysis: starting with $Y_0$ as the computed invariant set
 and at each point let $Y_{j+1}$ be $Y_j$ conjuncted with the weakest
-precondition of $Y_j$. 
+precondition of $Y_j$.
 
 If the abstraction is not sufficient, the user can add more predicates. With
 this, one need not re-check all previous implications, but only those that
@@ -70,12 +70,12 @@ protocol, which had only previously been verified with heavy user interaction.
 -   id: abstract-state-graph-construction-pvs
     type: article-journal
     author:
-    -  family: Graf
-       given: Susanne
-    -  family: Saidi
-       given: Hassen
+    -   family: Graf
+        given: Susanne
+    -   family: Saidi
+        given: Hassen
     issued:
-    -  year: 1997
+    -   year: 1997
     title: Construction of abstract state graphs with PVS
     container-title: Computer Aided Verification
     page: 72-83
