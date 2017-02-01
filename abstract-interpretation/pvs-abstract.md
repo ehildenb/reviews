@@ -1,6 +1,20 @@
 Construction of Abstract State Graphs with PVS - Graf Saidi - 1997
 ==================================================================
 
+### Abstract 
+
+In this paper, we propose a method for the automatic construction of an abstract
+state graph of an arbitrary system using the PVS theorem prover.  Given a
+parallel composition of sequential processes and a partition of the state space
+induced by predicates $\varphi_1, \ldots, \varphi_l$ on the program variables
+which defines an abstract state space, we construct an abstract state graph,
+starting in the abstract initial state. The possible successors of a state are
+computed using the PVS theorem prover by verifying for each index $i$ if
+$\varphi_i$ or $\neg\varphi_i$ is a postcondition of it. This allows an abstract
+state space exploration for arbitrary programs.
+
+### Summary
+
 The authors define a particular abstraction scheme for an arbitrary system using
 the PVS theorem prover. Abstraction schemes had been proposed before, though
 much more automation is present with this approach, specifically using the PVS
