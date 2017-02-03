@@ -212,8 +212,8 @@ feasible, potentially unbounded program traces. We argue that this approach is
 easier to use, and, more importantly, increases the confidence in verification
 results over the typical bounded approach. To demonstrate the feasibility of
 this idea, we implemented a fully automated prototype software model checker and
-verified several example algorithms. We also applied our technique to a non
-software model-checking problem from biology – we used it to analyze and
+verified several example algorithms. We also applied our technique to a
+non-software model-checking problem from biology – we used it to analyze and
 synthesize correct executions from scenario-based requirements in the form of
 Live Sequence Charts.
 
@@ -406,3 +406,45 @@ approaches.
 ---
 -   id: model-checking-c-k-induction-invariants.pdf
 ---
+
+Bounded Model Checking and Induction: From Refutation to Verification - Moura Ruess Sorea - 2003
+================================================================================================
+
+We explore the combination of bounded model checking and induction for proving
+safety properties of infinite-state systems. In particular, we define a general
+k-induction scheme and prove completeness thereof. A main characteristic of our
+methodology is that strengthened invariants are generated from failed
+k-induction proofs. This strengthening step requires quantifier-elimination, and
+we propose a lazy quantifier-elimination procedure, which delays expensive
+computations of disjunctive normal forms when possible. The effectiveness of
+induction based on bounded model checking and invariant strengthening is
+demonstrated using infinite-state systems ranging from communication protocols
+to timed automata and (linear) hybrid automata.
+
+---
+-   id: bmc-induction-refutation-to-verification
+    type: chapter
+    author:
+    -   family: Moura
+        given: Leonardo
+        dropping-particle: de
+    -   family: Rueß
+        given: Harald
+    -   family: Sorea
+        given: Maria
+    editor:
+    -   family: Hunt
+        given: Warren A.
+    -   family: Somenzi
+        given: Fabio
+    issued:
+    -   year: 2003
+    title: 'Bounded model checking and induction: From refutation to verification'
+    title-short: Bounded model checking and induction
+    container-title: 'Computer aided verification: 15th international conference, cAV 2003, boulder, cO, uSA, july 8-12, 2003. proceedings'
+    publisher: Springer Berlin Heidelberg
+    publisher-place: Berlin, Heidelberg
+    page: 14-26
+...
+
+

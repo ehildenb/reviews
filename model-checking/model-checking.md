@@ -23,7 +23,7 @@ temporal property in the case of systems over stacks or other symbolic data.
     issued:
     -   year: 2000
     title: Model checking as constraint solving
-    container-title: 'Static analysis: 7th international symposium, sAS 2000, santa barbara, cA, uSA, june 29 - july 1, 2000. proceedings'
+    container-title: 'Static Analysis: 7th International Symposium, SAS 2000, Santa Barbara, CA, USA, June 29 - July 1, 2000. Proceedings'
     publisher: Springer Berlin Heidelberg
     publisher-place: Berlin, Heidelberg
     page: 22-37
@@ -359,6 +359,87 @@ effectiveness of the proposed optimizations.
     publisher-place: Berlin, Heidelberg
     page: 277-293
 ---
+
+Understanding IC3 - Bradley - 2012
+==================================
+
+Abstract
+--------
+
+The recently introduced model checking algorithm, IC3, has proved to be among
+the best SAT-based safety model checkers. Many implementations now exist. This
+paper provides the context from which IC3 was developed and explains how the
+originator of the algorithm understands it. Then it draws parallels between IC3
+and the subsequently developed algorithms, FAIR and IICTL, which extend IC3's
+ideas to the analysis of -regular and CTL properties, respectively. Finally, it
+draws attention to certain challenges that these algorithms pose for the SAT and
+SMT community.
+
+---
+references:
+-   id: understanding-ic3
+    type: chapter
+    author:
+    -   family: Bradley
+        given: Aaron R.
+    editor:
+    -   family: Cimatti
+        given: Alessandro
+    -   family: Sebastiani
+        given: Roberto
+    issued:
+    -   year: 2012
+    title: Understanding iC3
+    container-title: 'Theory and applications of satisfiability testing – SAT 2012: 15th international conference, trento, italy, june 17-20, 2012. proceedings'
+    publisher: Springer Berlin Heidelberg
+    publisher-place: Berlin, Heidelberg
+    page: 1-14
+...
+
+Efficient Implementation of Property Directed Reachability - Een Mishchenko Brayton - 2011
+==========================================================================================
+
+Abstract
+--------
+
+Last spring, in March 2010, Aaron Bradley published the first truly new
+bit-level symbolic model checking algorithm since Ken McMillan's interpolation
+based model checking procedure introduced in 2003. Our experience with the
+algorithm suggests that it is stronger than interpolation on industrial
+problems, and that it is an important algorithm to study further. In this paper,
+we present a simplified and faster implementation of Bradley's procedure, and
+discuss our successful and unsuccessful attempts to improve it.
+
+Interpolation and SAT-Based Model Checking - McMillan - 2003
+============================================================
+
+We consider a fully SAT-based method of unbounded symbolic model checking based
+on computing Craig interpolants. In benchmark studies using a set of large
+industrial circuit verification instances, this method is greatly more efficient
+than BDD-based symbolic model checking, and compares favorably to some recent
+SAT-based model checking methods on positive instances.
+
+---
+-   id: McMillan2003
+    type: chapter
+    author:
+    -   family: McMillan
+        given: K. L.
+    editor:
+    -   family: Hunt
+        given: Warren A.
+    -   family: Somenzi
+        given: Fabio
+    issued:
+    -   year: 2003
+    title: Interpolation and sAT-based model checking
+    container-title: 'Computer aided verification: 15th international conference, cAV 2003, boulder, cO, uSA, july 8-12, 2003. proceedings'
+    publisher: Springer Berlin Heidelberg
+    publisher-place: Berlin, Heidelberg
+    page: 1-13
+...
+
+
 
 An Analysis of SAT-Based Model Checking Techniques in an Industrial Environment - Amla Du Kuehlmann Kurshan McMillan - 2005
 ===========================================================================================================================

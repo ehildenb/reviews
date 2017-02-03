@@ -98,3 +98,72 @@ References
     page: 72-83
     DOI: 10.1007/3-540-63166-6_10
 ---
+
+Abstract Interpretation: A Unified Lattice Model for Static Analysis of Programs by Construction or Approximation of Fixpoints - Cousot Cousot - 1977
+=====================================================================================================================================================
+
+Abstract
+--------
+
+A program denotes computations in some universe of objects. Abstract
+interpretation of programs consists in using that denotation to describe
+computations in another universe of abstract objects, so that the result of
+abstract execution give some informations on the actual computations. An
+intuitive example (which we borrow from Sintzoff) is the rule of signs. The text
+$-1515*17$ may be undestood to denote computations on the abstract universe
+$(+), (-), (+-)$ where the semantics of arithmetic operators is defined by the
+rule of signs. The abstract execution
+$-1515*17 \implies -(+)*(+) \implies (-)*(+) \implies (-)$, proves that
+$-1515+17$ is a negative number. Abstract interpretation is concerned by a
+particlar underlying structure of the usual universe of computations (the sign,
+in our example). It gives a summary of some facets of the actual executions of a
+program. In general this summary is simple to obtain but inacurrate (e.g.
+$-1515+17 \implies -(+)+(+) \implies (-)+(+) \implies (+-)$). Despite its
+fundamental incomplete results abstract interpretation allows the programmer or
+the compiler to answer questions which do not need full knowledge of program
+executions or which tolerate an imprecise answer (e.g. partial correctness
+proofs of programs ignoring the termination problems, type checking, program
+optimizations which are not carried in the absence of certainty about their
+feasibility, ...).
+
+Summary
+-------
+
+The authors define the common pattern of program analysis using abstract
+interpretation. This procedure is defined abstractly by the properties it must
+obey, and several concrete examples of static-analysis are provided.
+
+A simple model of programs is presented which consists of a program statements
+connected by arcs (control points) in the program. Each node of the program has
+a specific structure, so they are broken into five partitions: `Entry`,
+`Assignment`, `Test`, `Junction`, and `Exit`. `Arcs` connect the nodes in a
+program, and represent "program points" (points where the state of the program
+is un-ambiguous). The `state` of a program is given as an assignment of
+identifiers in the program to their respective values (the environment), as well
+as which program point the program is currently at. Semantics are provided by
+defining the `n-state: States -> States` function, which will take a set of
+states of the program, evaluate the next node for each state, and return the
+resulting set.
+
+The *context* of a program point is defined as the set of all environments
+possible at that point. The `n-state` function can be lifted to contexts in the
+obvious way.
+
+---
+-   id: abstract-interp-lattice-model-static-analysis
+    type: paper-conference
+    author:
+    -   family: Cousot
+        given: Patrick
+    -   family: Cousot
+        given: Radhia
+    issued:
+    -   year: '1977'
+    title: 'Abstract interpretation: A unified lattice model for static analysis of programs by construction or approximation of fixpoints'
+    title-short: Abstract interpretation
+    container-title: Proceedings of the 4th acm sigact-sigplan symposium on principles of programming languages
+    collection-title: POPL ’77
+    publisher: ACM
+    publisher-place: New York, NY, USA
+    page: '238-252'
+---

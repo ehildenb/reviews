@@ -77,6 +77,17 @@ checkers make SAL convenient for those seeking a ready-to-use solution, while
 its scriptability and flexible choice of backend analyzers should make it
 attractive to those seeking an experimental platform.
 
+Summary
+-------
+
+This short paper describes the architecture and capabilities of the SAL 2 model
+checking suite. SAL 2 has evolved into a specification language which has, as
+clients, tools like PVS, SAL 1, infBMC, etc. Overall, SAL 2 is designed to be
+extensible and scriptable, so that the various tools which speak the language
+can be called and use each other via the Scheme scripting language. This allows
+them to have high-performance model-checkers which they have refined over time,
+but to additionally have a nice experimental test-bed for future work.
+
 ---
 -   id: expl-state-model-checker-sal-2
     type: paper-conference
