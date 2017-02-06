@@ -24,4 +24,3 @@ unification: unification/unification.md
 
 typing: typing/typing.md
 	$(mkpdf) --output typing/typing.pdf typing/typing.md
-
