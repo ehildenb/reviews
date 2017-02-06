@@ -82,6 +82,11 @@ Questions
     means that the state-space grows (as opposed to shrinking) in
     the abstraction. Should it be more that you add more axioms to the systems
     (formulas that you claim are true), ruling out classes of abstract states?
+    
+    Answer: Adding predicates does not result in further abstraction but rather
+    a refinement of the abstraction. Such refinement isn't used to shrink the
+    state-space, but rather to prove a property that previously couldn't be
+    verified (see example in last paragraph).
 
 References
 ----------
