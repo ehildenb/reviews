@@ -210,7 +210,7 @@ method. If $\Vect{Int}$ has infinite ascending chains (eg. many programs with
 loops in control-flow), *widening* techniques must be used. Widening accelerates
 the calculation of a fixed-point by adding in monotonic over-approximations of
 the $\circ$ operator, denoted $\bigtriangledown$, with the property
-$C \circ C' \leq C \bigtriangleup C'$, and that there are no infinite ascending
+$C \circ C' \leq C \bigtriangledown C'$, and that there are no infinite ascending
 chains of the form
 $s_0 = C_0 \leq ... \leq s_n = s_{n-1} \bigtriangledown C_n \leq ...$ for
 arbitrary contexts $C_i$. The operator $\bigtriangledown$ can be used to build a
