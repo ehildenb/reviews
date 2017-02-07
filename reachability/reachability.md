@@ -78,6 +78,67 @@ algorithms by analyzing the connections between the symbolic representation of
 transition systems and formulas used in various reachability algorithms. Our
 main results are related to the so-called guarded assignment systems.
 
+Summary
+-------
+
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\satis}{\models}
+\newcommand{\unsatis}{\not\models}
+
+The authors provide an abstract definition of reachability in terms of a
+transition system over a first-order structure. Checking reachability is reduced
+to checking the validity of a formula over the signature of the first-order
+structure. Generic algorithms are provided to do both forwards and backwards
+reachability: these algorithms assume access to a solver which can decide
+satisfiability and validity in the underlying first-order theory. Additionally,
+the paper the more specific case of GAS (*guarded assignment systems*), which
+reduces the complexity of the reachability problem. Assuming a GAS, certain
+*stability* properties can be shown about the forwards and backwards
+reachability problems; in particular the "next state" function is stable w.r.t.
+positive existential formulas and conjunctive constraints, and the "previous
+state" function is stable w.r.t. positive existential formulas, conjunctive
+constraints, quantifier-free formulas, and simple constraints (Lemma 17).
+
+Throughout the paper, a first-order structure $\M$ over a domain $\D$ is
+assumed, where a *state* in the system is a valuation $s: \V \to \D$ ($\V$ a
+set of variables). A formula $A$ is said to *represent* a set of states $S$ if
+$s \in S$ iff $\M, s \satis A$. Additionally, a *transition relation* $\T$ is a
+set of pairs of states, $(s: \V \to \D, s': \V \to \D)$, which is
+*represented* by formula $B$ if $(s, s') \in \T$ iff $\M,s,s' \satis B$. A state
+$s_n$ is *forward reachable* from $s_1$ if there is a sequence of states
+$s_1, ..., s_n$ such that $(s_i, s_{i+1}) \in \T$ (similarly, $s_1$ is *backward
+reachable* from $s_n$).
+
+A *reachability problem* gives formulas $In$ (representing initial states),
+$Fin$ (representing final states), and $Tr$ (representing the transition
+relation), and asks if there are $s \in In$, $s' \in Fin$ such that $s'$ is
+reachable from $s$ w.r.t. $Tr$. This problem is in general undecidable, but
+special cases of it (eg. where satisfiability/validity in $\M$ are decidable)
+become decidable. Note that, given a formula $A(\V)$ representing a set of
+states, the set of states reachable in a step forward are
+$\exists \V' . (A(\V') \land Tr(\V', \V))$, and in a step backward are
+$\exists \V' . (A(\V') \land Tr(\V, \V'))$. This lets us define *forward
+reachability* as the sequence of formulas $FR_i$ with $FR_0(V) = In(V)$,
+$FR_{i+1}(V) = FR_i(V) \lor \exists \V' . (FR_i(\V') \land Tr(\V', \V))$.
+Similarly, *backward reachability* as the sequence of formulas $BR_i$ with
+$BR_0(V) = Fin(V)$,
+$BR_{i+1}(V) = BR_i(V) \lor \exists \V' . (BR_i(\V') \land Tr(\V, \V'))$.
+
+Note that we can now construct a forward (backward) reachability algorithm by
+observing (Theorem 7 - also works with appropriate reversals of forward/backward
+constructs):
+
+>   (i) There exists a final state reachable from an initial state if and only if
+>   there exists a number $i \geq 0$ such that
+>   $\M \satis \exists \V . (FR_i(\V) \land Fin(\V))$. (ii) If there exists a
+>   natural number $i \geq 0$ such that
+>   $\M \unsatis \exists \V . (FR_i(\V) \land Fin(\V))$ and
+>   $\M \satis \forall \V . (FR_{i+1}(V) \implies FR_i(V))$, then there exists no
+>   final state reachable from an initial state.
+
 ---
 -   id: logical-reconstruction-reachability
     type: paper-conference
