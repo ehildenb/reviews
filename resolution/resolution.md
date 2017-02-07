@@ -38,11 +38,12 @@ eliminated by adding function symbols. For example,
 $\forall x_1 \exists x_2 R(x_1, x_2)$ is converted to
 $\forall x_1 R(x_1, f(x_1))$.
 
-A ground resolvent is defined on ground clauses (sets of atomic
+A *ground resolvent* is defined on ground clauses (sets of atomic
 formulas/negations) $C$ and $D$, as the new clause $(C - L) \cup (D - M)$, where
-$L$ and $M$ are complementary singletons. A ground resolution is the set of
-ground clauses with all ground resolvents, and an N-th ground resolution is the
-nth level of ground resolutions.
+$L$ and $M$ are complementary singletons (such as $A$ and $\neg A$). Note a
+ground resolvent doesn't always exist for any two sets. A *ground resolution* is
+the set of ground clauses with all ground resolvents, and an *N-th ground
+resolution* is the nth level of ground resolutions.
 
 Robinson then relates these definitions to Herbrand's Theorem. A Herbrand
 universe of a set of clauses is the set of ground terms occurring in that set.
@@ -59,9 +60,9 @@ $P_i$ efficiently.
 
 Robinson then gives a method for testing satisfiability of a set of *ground*
 clauses, by constructing the sets $S, R(S), R^2(S), \ldots$, where $R(\cdot)$
-represents the resolution of a set, until either some $R^n(S)$ contains the
-empty clause, or $R^n(S) = R^{n+1}(S)$. A lemma is proved stating that in the
-former case, the set $S$ is unsatisfiable, and in the latter case it is
+represents the ground resolution of a set, until either some $R^n(S)$ contains
+the empty clause, or $R^n(S) = R^{n+1}(S)$. A lemma is proved stating that in
+the former case, the set $S$ is unsatisfiable, and in the latter case it is
 satisfiable. Herbrand's Theorem is thus again restated, stating that a set of
 clauses $S$ is unsatisfiable iff for some finite subset $P$ of $H$, there is
 some $n$ such that $R^n(P(S))$ contains the empty clause. Some additional lemmas
@@ -71,9 +72,10 @@ clause. This leaves the final restatement of Herbrand's Theorem as the
 Resolution Theorem:
 
 >   If $S$ is any finite set of clauses, $S$ is unsatisfiable iff $R^n(S)$
->   contains the empty clause, for some $n \geq 0$. Actually finding the
->   resolutions requires a unification algorithm, as terms in different clauses
->   may be distinct but still resolvable.
+>   contains the empty clause, for some $n \geq 0$. 
+
+Actually finding the resolutions requires a unification algorithm, as terms in
+different clauses may be distinct but still resolvable.
 
 Robinson proceeds to give examples to show the power of this inference system.
 Specifically, he uses it to prove the following property: Any associative system
@@ -91,12 +93,6 @@ terminate. Next, clauses are removed if they are subsemed by another clause,
 i.e. for clauses $C$ and $D$ there is a substitution $\sigma$ such that
 $C \sigma \subseteq D$. In this case the clause $D$ would be removed. These
 refinements do not compromise soundness or completeness.
-
-Questions
----------
-
--   What are the complementary singletons mentioned in paragraph 3? What is the
-    "resolvent of a set" (paragraph before the theorem)?
 
 References
 ----------
