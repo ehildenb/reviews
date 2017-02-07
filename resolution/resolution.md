@@ -70,10 +70,10 @@ states $P(R^n(S))$ contains the empty clause iff $R^n(S)$ contains the empty
 clause. This leaves the final restatement of Herbrand's Theorem as the
 Resolution Theorem:
 
-    If $S$ is any finite set of clauses, $S$ is unsatisfiable iff $R^n(S)$ contains
-    the empty clause, for some $n \geq 0$. Actually finding the resolutions requires
-    a unification algorithm, as terms in different clauses may be distinct but still
-    resolvable.
+>   If $S$ is any finite set of clauses, $S$ is unsatisfiable iff $R^n(S)$
+>   contains the empty clause, for some $n \geq 0$. Actually finding the
+>   resolutions requires a unification algorithm, as terms in different clauses
+>   may be distinct but still resolvable.
 
 Robinson proceeds to give examples to show the power of this inference system.
 Specifically, he uses it to prove the following property: Any associative system
