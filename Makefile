@@ -5,4 +5,4 @@ all: abstract-interpretation/abstract-interpretation.pdf logic/logic.pdf\
      unification/unification.pdf
 	
 %.pdf: %.md
-	pandoc --from markdown --to latex --output $@ $<
+	pandoc -V geometry='margin=2.5cm' --from markdown --to latex --output $@ $<

@@ -94,9 +94,9 @@ to checking the validity of a formula over the signature of the first-order
 structure. Generic algorithms are provided to do both forwards and backwards
 reachability: these algorithms assume access to a solver which can decide
 satisfiability and validity in the underlying first-order theory. Additionally,
-the paper the more specific case of GAS (*guarded assignment systems*), which
-reduces the complexity of the reachability problem. Assuming a GAS, certain
-*stability* properties can be shown about the forwards and backwards
+the paper explores the more specific case of GAS (*guarded assignment systems*),
+which reduces the complexity of the reachability problem. Assuming a GAS,
+certain *stability* properties can be shown about the forwards and backwards
 reachability problems; in particular the "next state" function is stable w.r.t.
 positive existential formulas and conjunctive constraints, and the "previous
 state" function is stable w.r.t. positive existential formulas, conjunctive
@@ -131,13 +131,70 @@ Note that we can now construct a forward (backward) reachability algorithm by
 observing (Theorem 7 - also works with appropriate reversals of forward/backward
 constructs):
 
->   (i) There exists a final state reachable from an initial state if and only if
->   there exists a number $i \geq 0$ such that
->   $\M \satis \exists \V . (FR_i(\V) \land Fin(\V))$. (ii) If there exists a
->   natural number $i \geq 0$ such that
->   $\M \unsatis \exists \V . (FR_i(\V) \land Fin(\V))$ and
->   $\M \satis \forall \V . (FR_{i+1}(V) \implies FR_i(V))$, then there exists no
->   final state reachable from an initial state.
+> (i) There exists a final state reachable from an initial state if and only if
+>     there exists a number $i \geq 0$ such that
+>     $\M \satis \exists \V . (FR_i(\V) \land Fin(\V))$.
+> (ii) If there exists a natural number $i \geq 0$ such that
+>     $\M \unsatis \exists \V . (FR_i(\V) \land Fin(\V))$ and
+>     $\M \satis \forall \V . (FR_{i+1}(V) \implies FR_i(V))$, then there exists
+>     no final state reachable from an initial state.
+
+Fig. 1 in the paper contains the algorithms for forward and backward
+reachability constructable using this theorem. Note that it requires
+satisfaction/validity to be checkable in the model $\M$, which may severly limit
+the class of acceptable theories $\M$. Theorem 9 shows that these algorithms are
+sound and semi-complete.
+
+When specialized to certain cases, decidability of reachability can drastically
+improve; moreover it may improve differently in the forward/backwards cases.
+This paper focuses on *GAS (guarded assignment systems)*. A guarded assignment
+(on variables $\V$) is a formula of the form
+$P \land v'_1 = t_1 \land ... \land v'_n = t_n \bigwedge \land_{v \in \V \setminus \{v_1, ..., v_n\}} v' = v$
+where $P$ is a formula with variables in $\V$ and $t_1, ..., t_n$ are terms with
+variables in $\V$. Denote this as $P \Rightarrow v_1 := t_1, ..., v_n := t_n$. A
+GAS is a finite set of guarded assignments defining a transition relation. Note
+that a GAS has for each state a finite number of successors, and that a deadlock
+state is definable as $\lnot (P_1 \lor ... \lor P_n)$ where $P_i$ are the guards
+of the transitions of the system.
+
+Stepping forward from $A(\V)$ with guarded assignment $u$ can be defined as
+$A^u(v_1, ..., v_n) = \exists \V' . A(\V') \land P(\V') \land v_1 = t'_1 \land ... \land v_n = t'_1$
+($t'_i$ denotes $t_i$ with variables in $\V$ replaced by primed variables from
+$\V'$). Similarly, stepping backward from state $A(\V)$ using guarded assignment
+$u$ can be defined as
+$A^{-u}(v_1, ..., v_n) = P(v_1, ..., v_n) \land A(t_1, ..., t_n)$. Notice that
+stepping backward is inherently simpler because the assignment of the guarded
+assignment provides Skolem functions for the existential quantification that
+arises from the general version of $BR$ given above. This menas that for
+backwards reachability on quantifier-free GAS where $Fin$ and $In$ are
+quantifier free, only quantifier-free queries to the $\M$-solver need to be made
+(this **does not** hold for forwards reachability).
+
+In the given algorithms for reachability, the reachable states are stored as a
+disjunction of formulas. When checking state-subsumption (ie. if the next (prev)
+state is subsumed by the current state so that symbolic execution can stop),
+having all of the states available as a single disjunction is bad for
+computability (as the formula is large), but good for being able to successfully
+prove subsumption. A *local* algorithm is also given, which stores the reached
+states instead as a set, and checks for subsumption of the next (prev) state by
+any individual in the set. While this makes the checks easier and more
+efficient, it may say that subsumption has not happened though it could have. If
+the local algorithms terminate, then so do the global ones.
+
+Based on the input theory $\M$, one may have even further reductions of the
+complexity of formulas over which satisfiability must be checked. A simple
+example is quantifier elimination; if $\M$ has quantifier elimination, it may be
+worth it to take advantage of that to make simpler queries to the $\M$-solver
+(though it may also be expensive to run the quantifier elimination). Another
+example propery of $\M$ is that every negation of an atomic formula can be
+turned into a disjunction of positive atomic formulas; consider
+$\M \satis \forall \V . A_1 \land ... \land A_n \implies B_1 \land ... \land B_m$
+iff
+$\M \unsatis \exists \V . A_1 \land ... \land A_n \land (\lnot B_1 \lor ... \lor \lnot B_n)$
+iff
+$\lor_{i \in 1...m} \M \satis \exists V . A_1 \land ... \land A_n \land \lnot B_i$.
+This can be turned into a simple constraint (or disjunction of simple
+constraints) given the above property of $\M$.
 
 ---
 -   id: logical-reconstruction-reachability
