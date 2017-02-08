@@ -12,21 +12,21 @@ recursive (automaton-like) definition of the set of states satisfying the given
 temporal property in the case of systems over stacks or other symbolic data.
 
 ---
--   id: model-checking-constraint-solving
-    type: chapter
-    author:
-    -   family: Podelski
-        given: Andreas
-    editor:
-    -   family: Palsberg
-        given: Jens
-    issued:
-    -   year: 2000
-    title: Model checking as constraint solving
-    container-title: 'Static Analysis: 7th International Symposium, SAS 2000, Santa Barbara, CA, USA, June 29 - July 1, 2000. Proceedings'
-    publisher: Springer Berlin Heidelberg
-    publisher-place: Berlin, Heidelberg
-    page: 22-37
+- id: podelski-constraint-solving-mc
+  type: chapter
+  author:
+  - family: Podelski
+    given: Andreas
+  editor:
+  - family: Palsberg
+    given: Jens
+  issued:
+  - year: 2000
+  title: Model checking as constraint solving
+  container-title: 'Static Analysis: 7th International Symposium, SAS 2000, Santa Barbara, CA, USA, June 29 - July 1, 2000. Proceedings'
+  publisher: Springer Berlin Heidelberg
+  publisher-place: Berlin, Heidelberg
+  page: 22-37
 ---
 
 Constraint-Based Deductive Model Checking - Delzanno Podelski - 2001
@@ -49,20 +49,20 @@ linear constraints here as opposed to Presburger arithmetic as in previous
 solutions.
 
 ---
--   id: model-checking-constraint-based-deduction
-    type: article-journal
-    author:
-    -   family: Delzanno
-        given: Giorgio
-    -   family: Podelski
-        given: Andreas
-    issued:
-    -   year: 2001
-    title: Constraint-based deductive model checking
-    container-title: International Journal on Software Tools for Technology Transfer
-    page: 250-270
-    volume: 3
-    issue: 3
+- id: delzanno-podelski-constraint-based-deductive-mc
+  type: article-journal
+  author:
+  - family: Delzanno
+    given: Giorgio
+  - family: Podelski
+    given: Andreas
+  issued:
+  - year: 2001
+  title: Constraint-based deductive model checking
+  container-title: International Journal on Software Tools for Technology Transfer
+  page: 250-270
+  volume: 3
+  issue: 3
 ---
 
 A Logical Reconstruction of Reachability - Rybina Voronkov - 2003
@@ -197,18 +197,18 @@ This can be turned into a simple constraint (or disjunction of simple
 constraints) given the above property of $\M$.
 
 ---
--   id: logical-reconstruction-reachability
-    type: paper-conference
-    author:
-    -   family: Rybina
-        given: Tatiana
-    -   family: Voronkov
-        given: Andrei
-    issued:
-    -   year: 2003
-    title: A logical reconstruction of reachability
-    container-title: Perspectives of systems informatics, 5th international andrei ershov memorial conference, PSI 2003, akademgorodok, novosibirsk, russia, july 9-12, 2003, revised papers
-    page: 222-237
+- id: rybina-voronkov-logical-reconstruction-reachability
+  type: paper-conference
+  author:
+  - family: Rybina
+    given: Tatiana
+  - family: Voronkov
+    given: Andrei
+  issued:
+  - year: 2003
+  title: A logical reconstruction of reachability
+  container-title: Perspectives of systems informatics, 5th international andrei ershov memorial conference, PSI 2003, akademgorodok, novosibirsk, russia, july 9-12, 2003, revised papers
+  page: 222-237
 ---
 
 Abstract Logical Model Checking of Infinite-State Systems Using Narrowing - Bae Escobar Meseguer - 2013
