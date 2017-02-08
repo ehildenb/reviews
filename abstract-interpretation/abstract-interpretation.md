@@ -179,14 +179,15 @@ $nstate$ is lifted pointwise to context-vectors (remaining monotonic). A
 context-vector is *consistent* (complete) if every possible environment possible
 a each program point is contained in the context vector, and is sound if no
 contexts not realizable at execution are contained in the context-vector. As
-such, an abstract interpretation is a 6-tuple: $\langle Cont, \circ, \leq, \top,
-\bot, Int: Arc \to \Vect{Cont} \to Cont \rangle$ where $Cont$ is the carrier set
-of possible contexts, $\Vect{Cont}$ is a contect-vector, representing a mapping
-from $Arc$ to $Cont$, $\langle Cont, \circ, \leq, \top, \bot \rangle$ is a
-complete semilattice with bottom, and $Int: Arc \to \Vect{Cont} \to Cont$ is the
-semantic interpretation of each arc in the program given a context-vector. $Int$
-can be lifted to a function $\Vect{Int}: \Vect{Cont} \to \Vect{Cont}$, which is
-monotonic.  $\Vect{Int}$ thus has fixpoints, and a unique least-fixpoint.
+such, an abstract interpretation is a 6-tuple:
+$\langle Cont, \circ, \leq, \top, \bot, Int: Arc \to \Vect{Cont} \to Cont \rangle$
+where $Cont$ is the carrier set of possible contexts, $\Vect{Cont}$ is a
+contect-vector representing a mapping from $Arc$ to $Cont$,
+$\langle Cont, \circ, \leq, \top, \bot \rangle$ is a complete semilattice with
+bottom, and $Int: Arc \to \Vect{Cont} \to Cont$ is the semantic interpretation
+of each arc in the program given a context-vector. $Int$ can be lifted to a
+function $\Vect{Int}: \Vect{Cont} \to \Vect{Cont}$, which is monotonic.
+$\Vect{Int}$ thus has fixpoints, and a unique least-fixpoint.
 
 Note that this defines a "join" abstraction, one can also easily find "meet"
 abstractions. Additionally, when the underlying model has appropriate notions of
