@@ -209,15 +209,15 @@ informative example of a lattice of abstractions complete with the lattices
 associated to the contexts of each abstraction.
 
 To obtain an abstract evaluation of a program, start with the context vector
-$Vect{\bot}$ and iteratively apply $\Vect{Int}$ until a fixed-point is reached.
+$\Vect{\bot}$ and iteratively apply $\Vect{Int}$ until a fixed-point is reached.
 If there are no infinite ascending chains in the lattice $\Vect{Cont}$, then
 this iteration of $\Vect{Int}$ will reach a fixed-point, which is Kleene's
 method. If $\Vect{Int}$ has infinite ascending chains (eg. many programs with
 loops in control-flow), *widening* techniques must be used. Widening accelerates
 the calculation of a fixed-point by adding in monotonic over-approximations of
 the $\circ$ operator, denoted $\bigtriangledown$, with the property
-$C \circ C' \leq C \bigtriangledown C'$, and that there are no infinite ascending
-chains of the form
+$C \circ C' \leq C \bigtriangledown C'$, and that there are no infinite
+ascending chains of the form
 $s_0 = C_0 \leq ... \leq s_n = s_{n-1} \bigtriangledown C_n \leq ...$ for
 arbitrary contexts $C_i$. The operator $\bigtriangledown$ can be used to build a
 function $AInt: \Vect{Cont} \to \Vect{Cont}$ which cannot increase forever (so
