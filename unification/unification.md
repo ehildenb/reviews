@@ -44,20 +44,20 @@ References
     Martelli Montanari - 1977
     
 ---
--   id: unification-martelli-montanari
-    type: article-journal
-    author:
-    -   family: Martelli
-        given: Alberto
-    -   family: Montanari
-        given: Ugo
-    issued:
-    -   year: 1982
-    title: An efficient unification algorithm
-    container-title: TRANSACTIONS ON PROGRAMMING LANGUAGES AND SYSTEMS (TOPLAS)
-    page: 258-282
-    volume: 4
-    issue: 2
+- id: martelli-montanari-efficient-unification
+  type: article-journal
+  author:
+  -   family: Martelli
+      given: Alberto
+  -   family: Montanari
+      given: Ugo
+  issued:
+  -   year: 1982
+  title: An efficient unification algorithm
+  container-title: TRANSACTIONS ON PROGRAMMING LANGUAGES AND SYSTEMS (TOPLAS)
+  page: 258-282
+  volume: 4
+  issue: 2
 ---
 
 Solving Equations in Abstract Algebra: A Rule-Based Survey of Unification - Jouannaud Kirchner - 1991
@@ -137,17 +137,17 @@ References
     Siekmann Schmidt-Schauss - 1988
 
 ---
--   id: unification-jouannaud-kirchner
-    type: paper-conference
-    author:
-    -   family: Jouannaud
-        given: Jean-Pierre
-    -   family: Kirchner
-        given: Claude
-    issued:
-    -   year: 1991
-    title: 'Solving equations in abstract algebras: A rule-based survey of unification'
-    title-short: Solving equations in abstract algebras
-    container-title: Computational logic - essays in honor of alan robinson
-    page: 257-321
+- id: jouannaud-Kirchner-solving-equations-rule-based-unification
+  type: paper-conference
+  author:
+  - family: Jouannaud
+    given: Jean-Pierre
+  - family: Kirchner
+    given: Claude
+  issued:
+  - year: 1991
+  title: 'Solving equations in abstract algebras: A rule-based survey of unification'
+  title-short: Solving equations in abstract algebras
+  container-title: Computational logic - essays in honor of alan robinson
+  page: 257-321
 ---

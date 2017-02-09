@@ -109,22 +109,19 @@ References
     Robinson - 1960
 
 ---
--   id: robinson-machine-oriented-resolution.pdf
-    type: article-journal
-    author:
-    -   family: Robinson
-        given: J. A.
-    issued:
-    -   year: '1965'
-        month: '1'
-    title: A machine-oriented logic based on the resolution principle
-    container-title: J. ACM
-    publisher: ACM
-    publisher-place: New York, NY, USA
-    page: '23-41'
-    volume: '12'
-    issue: '1'
-    URL: http://doi.acm.org/10.1145/321250.321253
-    DOI: 10.1145/321250.321253
-    ISSN: '0004-5411'
+- id: robinson-machine-oriented-resolution.pdf
+  type: article-journal
+  author:
+  - family: Robinson
+    given: J. A.
+  issued:
+  - year: '1965'
+    month: '1'
+  title: A machine-oriented logic based on the resolution principle
+  container-title: J. ACM
+  publisher: ACM
+  publisher-place: New York, NY, USA
+  page: '23-41'
+  volume: '12'
+  issue: '1'
 ---

@@ -89,22 +89,21 @@ References
     Olveczky Meseguer Talcott - 2006
 
 ---
--   id: real-time-maude-semantics-pragrmatics
-    type: article-journal
-    author:
-    -   family: Ölveczky
-        given: Peter Csaba
-    -   family: Meseguer
-        given: José
-    issued:
-    -   year: 2007
-    title: Semantics and pragmatics of real-time maude
-    container-title: Higher-Order and Symbolic Computation
-    page: 161-196
-    volume: 20
-    issue: 1
+- id: olveczky-meseguer-real-time-maude-semantics-pragrmatics
+  type: article-journal
+  author:
+  - family: Ölveczky
+    given: Peter Csaba
+  - family: Meseguer
+    given: José
+  issued:
+  - year: 2007
+  title: Semantics and pragmatics of real-time maude
+  container-title: Higher-Order and Symbolic Computation
+  page: 161-196
+  volume: 20
+  issue: 1
 ---
-
 
 Abstraction and Completeness for Real-Time Maude - Olveczky Meseguer - 2007
 ===========================================================================
@@ -188,70 +187,20 @@ References
     Bruni Meseguer - 2003
 
 ---
--   id: real-time-maude-abstraction-completeness
-    type: article-journal
-    author:
-    -   family: Ölveczky
-        given: Peter Csaba
-    -   family: Meseguer
-        given: José
-    issued:
-    -   year: 2007
-        month: 7
-    title: Abstraction and completeness for real-time maude
-    container-title: Electronic Notes in Theoretical Computer Science
-    publisher: Elsevier
-    page: 5-27
-    volume: 176
-    issue: 4
----
-
-Designing and verifying distributed cyber-physical systems using Multirate PALS: An airplane turning control system case study - Bae Krisiloff Meseguer Ölveczky - 2015
-=======================================================================================================================================================================
-
-Abstract
---------
-
-transportation systems, are very hard to design and verify, because of
-asynchronous communication, network delays, and clock skews. Their model
-checking verification typically becomes unfeasible due to the huge state space
-explosion caused by the system's concurrency. The Multirate PALS (“physically
-asynchronous, logically synchronous”) methodology has been proposed to reduce
-the design and verification of a DCPS to the much simpler task of designing and
-verifying its underlying synchronous version, where components may operate with
-different periods. This paper presents a methodology for formally modeling and
-verifying multirate DCPSs using Multirate PALS. In particular, this methodology
-explains how to deal with the system's physical environment in Multirate PALS.
-We illustrate our methodology with a multirate DCPS consisting of an airplane
-maneuvered by a pilot, who turns the airplane to a specified angle through a
-distributed control system. Our formal analysis using Real-Time Maude revealed
-that the original design did not achieve a smooth turning maneuver, and led to a
-redesign of the system. We then use model checking and Multirate PALS to prove
-that the redesigned system satisfies the desired correctness properties, whereas
-model checking the corresponding asynchronous model is unfeasible. This shows
-that Multirate PALS is not only effective for formal DCPS verification, but can
-also be used effectively in the DCPS design process.
-
----
--   id: design-verification-cps-multirate-pals
-    type: article-journal
-    author:
-    -   family: Bae
-        given: Kyungmin
-    -   family: Krisiloff
-        given: Joshua
-    -   family: Meseguer
-        given: Jose
-    -   family: Ölveczky
-        Peter Csaba
-    issued:
-    -   year: 2015
-        month: 6
-    title: Designing and verifying distributed cyber-physical systems using multirate PALS
-    container-title: Sci. Comput. Program.
-    publisher: Elsevier North-Holland, Inc.
-    publisher-place: Amsterdam, The Netherlands, The Netherlands
-    page: 13-50
-    volume: 103
-    issue: C
+- id: olveczky-mesegure-real-time-maude-abstraction-completeness
+  type: article-journal
+  author:
+  - family: Ölveczky
+    given: Peter Csaba
+  - family: Meseguer
+    given: José
+  issued:
+  - year: 2007
+    month: 7
+  title: Abstraction and completeness for real-time maude
+  container-title: Electronic Notes in Theoretical Computer Science
+  publisher: Elsevier
+  page: 5-27
+  volume: 176
+  issue: 4
 ---

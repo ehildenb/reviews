@@ -101,19 +101,19 @@ References
     Shankar Owre Rushby - 1993
 
 ----
--   id: abstract-state-graph-construction-pvs
-    type: article-journal
-    author:
-    -   family: Graf
-        given: Susanne
-    -   family: Saidi
-        given: Hassen
-    issued:
-    -   year: 1997
-    title: Construction of abstract state graphs with PVS
-    container-title: Computer Aided Verification
-    page: 72-83
-    DOI: 10.1007/3-540-63166-6_10
+- id: graf-saidi-abstract-state-graphs-pvs
+  type: article-journal
+  author:
+  - family: Graf
+    given: Susanne
+  - family: Saidi
+    given: Hassen
+  issued:
+  - year: 1997
+  title: Construction of abstract state graphs with PVS
+  container-title: Computer Aided Verification
+  page: 72-83
+  DOI: 10.1007/3-540-63166-6_10
 ---
 
 Abstract Interpretation: A Unified Lattice Model for Static Analysis of Programs by Construction or Approximation of Fixpoints - Cousot Cousot - 1977
@@ -249,7 +249,7 @@ diagrams showing how all these approximations behave on the space of
 $\Vect{Cont}$.
 
 ---
--   id: abstract-interp-lattice-model-static-analysis
+-   id: cousot-cousot-unified-lattice-model-fixpoints
     type: paper-conference
     author:
     -   family: Cousot
