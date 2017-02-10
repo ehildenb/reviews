@@ -143,3 +143,53 @@ constraints) given the above property of $\M$.
   container-title: Perspectives of systems informatics, 5th international andrei ershov memorial conference, PSI 2003, akademgorodok, novosibirsk, russia, july 9-12, 2003, revised papers
   page: 222-237
 ---
+
+Simulating Reachability Using First-order Logic with Applications to Verification of Linked Data Structures - Lev-Ami Immerman Reps Sagiv Srivastava Yorsh - 2009
+=================================================================================================================================================================
+
+Abstract
+--------
+
+This paper shows how to harness existing theorem provers for first-order logic
+to automatically verify safety properties of imperative programs that perform
+dynamic storage allocation and destructive updating of pointer-valued structure
+fields. One of the main obstacles is specifying and proving the (absence) of
+reachability properties among dynamically allocated cells.
+
+The main technical contributions are methods for simulating reachability in a
+conservative way using first-order formulas—the formulas describe a superset of
+the set of program states that would be specified if one had a precise way to
+express reachability. These methods are employed for semiautomatic program
+verification (i.e., using programmer-supplied loop invariants) on programs such
+as mark-and-sweep garbage collection and destructive reversal of a singly linked
+list. (The mark-and-sweep example has been previously reported as being beyond
+the capabilities of ESC/Java.)
+
+Summary
+-------
+
+The authors present a first-order logic theorem prover to specify reachability
+properties for linked data structures. Such reasoning abounds in practical
+examples, such as for garbage collection, specifying absence of deadlocks, etc.
+
+One of the main contributions of this paper is an axiomatization of transitive
+closure. Many formulas contain transitive closure, which is something most
+first-order theorem provers cannot handle. To remedy this, the authors replace a
+formula $\chi$ with $\chi'$, where each appearance of $TC[f]$ is replaced with a
+new binary relation symbol $f_{tc}$. From $\chi'$ the authors try to generate a
+first-order axiom $\sigma$ such that if $\sigma \rightarrow \chi'$ is valid in
+first order logic, then the original formula $\chi$ is valid in first order
+logic with an oracle for transitive closure. Of course, since there is no
+recursively enumerable TC-complete axiom system, this process cannot be
+complete, though all TC axiom schemes added are proved sound.
+
+The authors also define an induction principle for first-order formulas, which
+uses this transitive closure axiomatization. They also define three TC-sound
+axiom schemes, denoted coloring axioms, that are provable from the induction
+axiom, but more useful than induction in practice. They also prove that their
+axiomatization is TC-complete for words. Finally, they demonstrate the
+usefulness of their approach with by verifying some practical examples, such as
+reversing a list, appending two linked list, and the mark phase of a simple mark
+and sweep garbage collector.
+
+
