@@ -191,5 +191,3 @@ axiomatization is TC-complete for words. Finally, they demonstrate the
 usefulness of their approach with by verifying some practical examples, such as
 reversing a list, appending two linked list, and the mark phase of a simple mark
 and sweep garbage collector.
-
-
