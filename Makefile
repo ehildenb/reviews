@@ -1,5 +1,5 @@
 all: abstract-interpretation/abstract-interpretation.pdf \
-     reachability/reachability.pdf tools/tools.pdf \
+     reachability/reachability.pdf tools/tools.pdf logic/logic.pdf \
      real-time/real-time.pdf resolution/resolution.pdf typing/typing.pdf \
      unification/unification.pdf software-engineering/software-engineering.pdf
 	
