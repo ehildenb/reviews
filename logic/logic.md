@@ -66,3 +66,79 @@ references:
   volume: 12
   number: 10
 ...
+
+Lambda Calculus: Models and Thoeries - Salibra - 2011
+=====================================================
+
+Abstract
+--------
+
+In this paper we give an outline of recent results concerning theories and
+models of the untyped lambda calculus. Algebraic and topological methods have
+been applied to study the structure of the lattice of $\lambda$-theories, the
+equational incompleteness of lambda calculus semantics, and the
+$\lambda$-theories induced by graph models of lambda calculus.
+
+Summary
+-------
+
+Models of lambda calculus are very unnatural, as the domain of the carrier set
+must have as many elements as it does functions over those elements. Due to
+this, it was many years after the introduction of lambda calculus before any
+models of lambda calculus arose. Further, no "canonical" models of lambda
+calculus exist. This paper surveys different models of the untyped lambda
+calculus, and addresses the (in)completeness of lambdas calculus.
+
+The paper first gives basic definitions and notations for lambda calculus, with
+the usual $\alpha$ and $\beta$ rules. They also define particular lambda terms,
+such as the $SKI$ combinators, as well as $\mathbf{1} \equiv \lambda xy.xy$. The
+extensional lambda-theory (equivalent to the $\eta$ axiom), is axiomatized by $I
+\equiv \mathbf{1}$.
+
+The notion of a combinatory algebra is defined, where a combinatory algebra has
+a carrier set $C$ and a binary operation $\cdot$, as well as constant symbols
+$K$ and $S$. It must satisfy the identities $Kxy = x$ and $Sxyz =
+xz(yz)$. Combinators $I$ and $\mathbf{1}$ are derived as $I = SKK$ and
+$\mathbf{1} = S(KI)$. The notion of representability is also defined, stating
+that a function $f$ is representable if there is a $c$ such that $cz = f(z)$ for
+all $z \in C$.
+
+Lambda models are then discussed. The most "natural" models of untyped lambda
+calculus, called *environment models* are higher-order structures. However, a
+class of combinatory algebras called $\lambda-models$ have an elegant (though
+not equational) axiomatization. The paper then covers the precise definition of
+$\lambda$-models, which satisfy reasonable equations. The most important axiom,
+known as the *Meyer-Scott axiom* is the only non-equational axiom for
+$\lambda$-models, and it is:
+
+> $\forall x\forall y(\forall z(xz=yz)\Rightarrow \mathbf{1} x= \mathbf{1}y)$
+
+This axiom makes the combinator $\mathbf{1}$ an inner choice operator, yielding
+a canonical representative for each lambda-abstraction. The author then
+discusses how a $\lambda$-model induces a $\lambda$-theory.
+
+Incompleteness results are then discussed. In general, $\lambda$-theories are
+incomplete, and the author discusses conditions where two $\lambda$ terms can be
+proved equal in a $\lambda$-theory, though they are not equal in the theory
+induced by the combinatory algebra. Incompleteness is also considered from a
+topological viewpoint.
+
+Finally, graph models and theories induced by graph models are discussed, and
+these models are also known to be incomplete. The author concludes with a
+discussion about the set of all $\lambda$-theories, which naturally forms a
+complete lattice.
+
+---
+references:
+- id: DBLP:journals/corr/abs-0904-4756
+  type: article-journal
+  author:
+  - family: Manzonetto
+    given: Giulio
+  issued:
+  - year: '2009'
+  title: Models and theories of lambda calculus
+  container-title: CoRR
+  volume: abs/0904.4756
+  URL: http://arxiv.org/abs/0904.4756
+...

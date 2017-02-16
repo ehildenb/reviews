@@ -191,3 +191,37 @@ axiomatization is TC-complete for words. Finally, they demonstrate the
 usefulness of their approach with by verifying some practical examples, such as
 reversing a list, appending two linked list, and the mark phase of a simple mark
 and sweep garbage collector.
+
+---
+references:
+- id: Lev-Ami2005
+  type: chapter
+  author:
+  - family: Lev-Ami
+    given: T.
+  - family: Immerman
+    given: N.
+  - family: Reps
+    given: T.
+  - family: Sagiv
+    given: M.
+  - family: Srivastava
+    given: S.
+  - family: Yorsh
+    given: G.
+  editor:
+  - family: Nieuwenhuis
+    given: Robert
+  issued:
+  - year: '2005'
+  title: Simulating reachability using first-order logic with applications to verification
+    of linked data structures
+  container-title: 'Automated deduction – cade-20: 20th international conference
+    on automated deduction, tallinn, estonia, july 22-27, 2005. proceedings'
+  publisher: Springer Berlin Heidelberg
+  publisher-place: Berlin, Heidelberg
+  page: '99-115'
+  URL: http://dx.doi.org/10.1007/11532231_8
+  DOI: 10.1007/11532231_8
+  ISBN: '978-3-540-31864-4'
+...
