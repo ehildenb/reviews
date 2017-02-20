@@ -1,3 +1,8 @@
+\newcommand{\proves}{\vdash}
+\newcommand{\lif}{\rightarrow}
+\newcommand{\always}{\square}
+\newcommand{\eventually}{\diamond}
+
 An Axiomatic Basis for Computer Programming - Hoare - 1969
 ==========================================================
 
@@ -15,9 +20,6 @@ may follow from a pursuance of these topics.
 
 Summary
 -------
-
-\newcommand{\proves}{\vdash}
-\newcommand{\lif}{\rightarrow}
 
 Hoare presents a logic schema for axiomatizing computer programming languages
 with the goal of proving their correctness. *Hoare tripples* of the form
@@ -142,3 +144,165 @@ references:
   volume: abs/0904.4756
   URL: http://arxiv.org/abs/0904.4756
 ...
+
+Automated Deduction for Verification - Shankar - 2009
+=====================================================
+
+Abstract
+--------
+
+Automated deduction uses computation to perform symbolic logical reasoning. It
+has been a core technology for program verification from the very beginning.
+Satisfiability solvers for propositional and first-order logic significantly
+automate the task of deductive program verification. We introduce some of the
+basic deduction techniques used in software and hardware verification and
+outline the theoretical and engineering issues in building deductive
+verification tools. Beyond verification, deduction techniques can also be used
+to support a variety of applications including planning, program optimization,
+and program synthesis.
+
+Summary
+-------
+
+### Introduction
+
+Verification is a critical component of many parts of formal methods. Deductive
+techniques, both automated and interactive, have long been associated with
+verification. The basic query in deduction is whether a statement is *valid*
+(equivalently the negation is not *satisfiable*); a proof system is *sound* if
+every proof results in a valid statement, and is *complete* if every valid
+statement has a proof using the system. Automated deduction can be used in many
+verification tasks, several of them listed at the end of the introduction.
+
+### Mathematical Logic
+
+>   A strong facility with logic is an essential skill for a computer scientist.
+
+In this section, several logics are briefly intoduced. The included logics are
+*propositional logic*, *equational logic*, *first-order logic*, and
+*higher-order logic*. Logics have several parts, including a language (syntax),
+semantics (intended meaning of syntax), and a proof system (framework for
+deriving valid statements).
+
+Propositional Logic:
+:   Propositional logic has atomic *propositions* and variables, joined with a
+    boolean algebra. Models of the logic consist of assignments of truth values
+    to each atomic proposition. Two major interpretations of the symbols in the
+    boolean algebra are *classical* and *intuitionistic* (constructive). Many
+    proof systems exist for propositional logic, each which emphasizes different
+    ways of thinking about proofs and structuring them; the main ones are
+    *Hilbert-style* proof systems (use *modus ponens* as the work-horse),
+    *natural-deduction* (with *introduction* and *elimination* proof rules), and
+    *sequent calculus* (move sets of propositions across the $\proves$).
+
+    *Modal logic* allows for expressing modes which are indexed by truth
+    assignments (called *worlds*). A Kripke model consists of a set of worlds
+    with an accessibility relation between worlds, and modality operators
+    $\always$ and $\eventually$ which allows expressing the reachability of
+    other worlds from the current world. Modal logics have been very succesful
+    for expressing *temporal* logics like LTL, CTL, and CTL*.
+
+    Numerous applications of propositional logic are presented, including
+    modelling circuitry, planning, and bounded model checking. States and
+    transitions between states can both be encoded as propositional formulas,
+    giving rise to the notions of *invariant* states and *inductive*
+    properties of transition relations. *Symbolic model checking* is achieved by
+    allowing for variables in the state formulas.
+
+Equational Logic:
+:   Equational logic is an extension of propositional logic (and a fragment
+    of FOL) which is restricted to judgements of equalities $E \proves a = b$,
+    with $E$ a set of equalitions (formulas are implicitely
+    universally quantified). Many algebraic models (eg. semigroups,
+    monoids, groups, rings, boolean algebras) admit equational theories.
+    Sound and complete proof systems for equational logic exist; many equational
+    theories can even be expressed as directed term-rewriting systems too,
+    giving an executable semantics to them.
+
+First-Order Logic (FOL):
+:   First-order logic allows for propositions to range over *terms* from some
+    signature $\Sigma$ which represent functions over the domains of the models
+    of FOL. User-defined *relations* over the terms represent subsets of
+    the model. Equality in first-order logic is special; it can be treated as a
+    relation with axioms or as a logical symbol. In addition to a boolean
+    algebra, existential ($\exists$, corresponds to satisfiability) and
+    universal ($\forall$, corresponds to validity) quantification over variables
+    is allowed. Propositional logic can be seen as a fragment of FOL where the
+    atomic predicates range over terms and there are no equations
+    or quantification.
+
+    Sound and comlete proof systems for FOL exist; to extend the proof from that
+    of propositional logic to FOL, one adds witnesses (fresh constants) for each
+    existential sentence in the signature (along with a witness axiom). This
+    process extends the signature $\Sigma$ and axioms $\Gamma$ to a $\hat\Sigma$
+    and $\hat\Gamma$ from which one can simply read off the correct model.
+
+    Sentences in FOL can be converted syntactically into *prenex normal form*,
+    which moves all the quantifiers to the front of the sentences. Additionally,
+    one can eliminate existential quantifiers by introducing *Skolem functions*
+    in their place, yielding formulas with only universal quantification. Using
+    the Herbrand theorem, one can more easily demonstrate unsatisfiability of
+    such formulas. Other interesting results about FOL include the *compactnes*
+    theorem, the L"owenheim-Skolem theorem, the *almalgamation* theorem, and the
+    encodability of the halting-problem.
+
+    A *first-order theory* is a set of first-order sentences $\Gamma$ closed
+    under logical *entailment*. A theory is *finitely axiomatizable* there is a
+    finite $\Gamma_0 \subseteq \Gamma$ such that $\Gamma_0 \models \Gamma$. A
+    theory is *recursively axiomatizable* if there is a program that can
+    distinguish axioms from non-axioms among the sentences. A theory is
+    *decidable* if there is a program which can distinguish sentences within the
+    theory from those without.
+
+    Several interesting first-order theories are presented next (page 20:15),
+    including theories of interesting models, theories of arithmetic, various
+    algebraic theories, and some theories of data-structures. This demonstrates
+    the versatility of FOL as a specification language.
+
+    The *standard first-order theory of arithmetic* would consist of all the
+    sentences true of the symbols $\{0,1,+,*\}$, but it has been demonstrated
+    that no axiomatization (even a *recursive enumerable* one, which only
+    requires a computer to generate them and not recognize them) can be
+    complete w.r.t. the standard theory. *Primitive recursive arithmetic* was
+    introduced to provide a more constructive foundation for mathematics; this
+    allows for functions to be defined in terms of a few base functions (ie.
+    constant, successor, and projection operations), a simple function
+    composition scheme, and by *primitive recursion*.
+
+Set Theory:
+:   Set theory provides an encoding for talking about mathematics with wide
+    applicability. The original formulation which allowed constructing sets of
+    elements with arbitrary properties proved to be unsound (Russel's paradox).
+    Axiomatization of set-theory restored soundness; this came in the form of ZF
+    set-theory (Zermelo, Fraenkel, and Skolem). A single predicate $\in$ is
+    introduced along with various ways of constructing sets and appropriate
+    axioms relating $\in$ to those constructions.
+
+Higher-order Logic:
+:   FOL only allows variables to range over individuals of the model; in
+    second-order logic variables can also range over first-order function and
+    predicate symbols. $N^{th}$ order logic will allow for variables to range
+    over $N-1^{th}$ function and predicate symbols, higher-order logic (HOL)
+    contains $N^{th}$-order logic for all $N$.
+
+    HOL was originally meant by Russell to rule out Russell's paradox be
+    creating a heirarchy of types and having rules about where formulas of
+    various types can be used. Later, Church's simply theory of types subsumed
+    this, which placed function types with domain at level $N$ and codomain at
+    level $N+1$ at level $N+1$. Also introduced was the syntax of
+    lambda-abstraction and application, along with *typing judgement* rules
+    associated with terms built from this syntax.
+
+    Another formulation of HOL by Andrews called system $Q_0$ takes equality
+    (over terms) and equivalence (over predicates) as primitive for each type,
+    with other symbols being derivable. A *term context* is introduced, which is
+    a term with a single *hole* in it, along with a single inference rule and
+    four axioms.
+
+    HOL can express finiteness, which means it does not satisfy compactness.
+    Induction axioms (expressed as an infinite axiom schema in FOL) can be
+    expressed as a single axiom in HOL. In the *standard* interpretation, even
+    just second-order logic is incomplete, but *Henkin models* of HOL, which
+    interperet function types as maps between sets, are complete. Monadic
+    second-order logic restricts the higher-order variables to monadic
+    predicates (unary predicates), which makes it decidable.
