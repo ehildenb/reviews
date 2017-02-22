@@ -136,3 +136,88 @@ interested reader on all the discussed topics.
   volume: '30'
   issue: '2'
 ...
+
+A Rational Design Process: How and Why to Fake It - Parnas Clements - 2005
+==========================================================================
+
+Summary
+-------
+
+A purely rational design process is impossible to achieve, but we should still
+strive to "fake" a rational process. In doing so we can incrementally improve
+our design and development processes, smoothing out future work and making it
+easier for new people to join the project. There are many things working against
+a rational design process, including in-exact knowledge of system requirements,
+changing requirements, poor communications, human error, preconceptions about
+how software should be designed, and external forces pushing us to use imperfect
+tools. In fact, any appearance of rationality in a design is because of
+extensive refinement and polishing of the final presentation of the software.
+
+Nevertheless, we should keep in mind a rational design process. This will
+provide designers with a template of the actions to take in building software,
+as well as providing a standard "project interface" across the multiple projects
+an organization might have. The description of a development process should
+describe the work products (deliverables) that will be accumulated throughout
+the project, as those are the only measurable outputs of a project.
+
+The first step in design is to establish and document the requirements of a
+project. These requirements should be stated in terms of the observables
+(outputs) of the system. This provides a reference to show to the user to
+confirm the overall design, a template of the decisions to be made for the
+programmers, an estimate of how much work needs to be done, and a basis for
+settling arguments among the implementers of a system. This document should be
+sound (every listed requirement is required of all implementations of the
+system) and complete (any requirement of all systems like this is spelled out in
+the document); any potential incompleteness of the document should be spelled
+out explicitely.
+
+The document should have a mathematical model behind it, with all the associated
+terminology and background spelled out explicitely, and should be arranged
+modularly so that tasks can be broken out to individual developers along module
+boundary lines. Modules of the system should document their inputs and outputs,
+as well as their interfaces and dependencies. Additionally, modules can be
+broken into sub-modules, allowing for fine-grained separation of concerns. The
+internal data-structures of each module should be included in the description,
+along with descriptions of how they should behave.
+
+As requirements evolve over time, it's important to put those changes through
+the rational design process as if they had been there from the beginning. This
+ensures compatibility of the changes with the rest of the project and maintains
+all the useful design structures put in place by the design process.
+
+An important part of development is developing the documentation as well. Often,
+documentation is written poorly as an afterthought by the programmers who see it
+as unnecessary. This leads to documentation that is poorly organized, boring,
+incosistent and confusing, or myopic. Instead, if documentation is put through
+the same rational design process (lay out the requirements of the documentation
+in the form a questions it should answer), so that the documentation is modular
+an non-repetitive, then the resulting documentation will be information-dense
+and not boring to read. Any terminology or math use extensively must be
+explicitely defined up front, to avoid ambiguity or repetition.
+
+While it will not be possible to have a perfectly rational design process, it is
+important to "fake it" along the way. The artifacts produced by doing so
+(requirements, documentattion, module system) are useful for the cohesion of the
+project. Additionally, similarly to how a program is refactored and refined
+towards its final form, these artifacts can be refactored and refined along the
+way to produce a piece of software which is self-contained, descriptive, and
+well-documented. Design decisions will be documented as well, making it easier
+of future developers to see why the software is structured as it is.
+
+@Inbook{Parnas1985,
+author="Parnas, David L.
+and Clements, Paul C.",
+editor="Ehrig, Hartmut
+and Floyd, Christiane
+and Nivat, Maurice
+and Thatcher, James",
+title="A rational design process: How and why to fake it",
+bookTitle="Formal Methods and Software Development: Proceedings of the International Joint Conference on Theory and Practice of Software Development (TAPSOFT) Berlin, March 25--29, 1985",
+year="1985",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="80--100",
+isbn="978-3-540-39307-8",
+doi="10.1007/3-540-15199-0_6",
+url="http://dx.doi.org/10.1007/3-540-15199-0_6"
+}
