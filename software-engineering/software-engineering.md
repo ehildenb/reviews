@@ -204,20 +204,31 @@ way to produce a piece of software which is self-contained, descriptive, and
 well-documented. Design decisions will be documented as well, making it easier
 of future developers to see why the software is structured as it is.
 
-@Inbook{Parnas1985,
-author="Parnas, David L.
-and Clements, Paul C.",
-editor="Ehrig, Hartmut
-and Floyd, Christiane
-and Nivat, Maurice
-and Thatcher, James",
-title="A rational design process: How and why to fake it",
-bookTitle="Formal Methods and Software Development: Proceedings of the International Joint Conference on Theory and Practice of Software Development (TAPSOFT) Berlin, March 25--29, 1985",
-year="1985",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="80--100",
-isbn="978-3-540-39307-8",
-doi="10.1007/3-540-15199-0_6",
-url="http://dx.doi.org/10.1007/3-540-15199-0_6"
-}
+---
+- id: parnas-clements-rational-design-fake-it
+  type: chapter
+  author:
+  - family: Parnas
+    given: David L.
+  - family: Clements
+    given: Paul C.
+  editor:
+  - family: Ehrig
+    given: Hartmut
+  - family: Floyd
+    given: Christiane
+  - family: Nivat
+    given: Maurice
+  - family: Thatcher
+    given: James
+  issued:
+  - year: '1985'
+  title: 'A rational design process: How and why to fake it'
+  title-short: A rational design process
+  container-title: 'Formal methods and software development: Proceedings of the
+    international joint conference on theory and practice of software development
+    (tapsoft) berlin, march 25–29, 1985'
+  publisher: Springer Berlin Heidelberg
+  publisher-place: Berlin, Heidelberg
+  page: '80-100'
+...
