@@ -236,7 +236,7 @@ First, the authors introduce the previously developed notion of Classical
 Processes (CP). In CP, propositions are interpreted as session types. Output
 types correspond to the sender while input types correspond to a receiver. For
 example, the type $A \otimes B$ corresponds to sending $A$ and then proceeding
-as $B$, while the dual type $A amp B$ corresponds to receiving $A$ then
+as $B$, while the dual type $A \bindnasrepma B$ corresponds to receiving $A$ then
 proceeding as $B$. Syntax for processes and typing rules for these processes are
 given. Among these are the "Cut" rule, which combines parallel composition with
 name restriction. The typing rules exactly correspond to proof rules in
@@ -255,4 +255,71 @@ attempting to buy a book from a seller. The first buyer first communicates the
 name of the book to the seller, and the seller sends the price to both
 buyers. The first buyer sends to the second buyer how much he is willing to
 contribute, and the second buyer can either complete the transaction by paying
-the rest or cancel the transaction. This
+the rest or cancel the transaction. In order to express this protocol, a
+complicated arbiter process needs to be constructed over three endpoints, one
+for each buyer and the seller.
+
+Next, Globally-governed Classical Processes (GCP) are introduced. In GCP, using
+coherence, the notion of duality seen in CP is generalized. Rather than
+restricting the framework to composing two processes, GCP allows composition of
+an aribtrary $n$ processes, governed by a *global type*. For example, if
+$\tilde{x}$ is a sequence of endpoints and $G,H$ are global types, $\tilde{x}
+\rightarrow y(G).H$ represents the process where each endpoint in $\tilde{x}$
+sends a message to $y$ to create a new session of type $G$ and continue as
+$H$. Typing rules and semantics for coherence are given, as well as a cut
+elimination theorem. The two-buyer protocol is then addressed again. With GCP,
+the arbiter process as before is no longer necessary, as all three processes can
+be composed easily with GCP. Finally, translations from CP to GCP and GCP to CP
+are given, and a bisimulation between these two is proved.
+
+Next, the authors address Multiparty Classical Processes (MCP). In the original
+presentation of MCP, output and input are inverted. The authors avoid making
+this sacrifice in defining GCP. In addition, GCP differs from MCP in the sense
+that in MCP, actions are annotated with the endpoint that they should interact
+with. GCP avoids this by using the global type as the central point of
+control. The authors define a simple translation from GCP to a variant of MCP,
+by recursively adding such annotations. Typing, coherencce rules, and semantics
+for MCP are given, and they are very similar to those for GCP. Finally, a
+bisimulation between GCP and MCP is shown.
+
+---
+header-includes:
+- \usepackage{stmaryrd}
+
+---
+references:
+- id: carbone_et_al:LIPIcs:2016:6181
+  type: paper-conference
+  author:
+  - family: Carbone
+    given: Marco
+  - family: Lindley
+    given: Sam
+  - family: Montesi
+    given: Fabrizio
+  - family: Schürmann
+    given: Carsten
+  - family: Wadler
+    given: Philip
+  editor:
+  - family: Desharnais
+    given: Josée
+  - family: Jagadeesan
+    given: Radha
+  issued:
+  - year: '2016'
+  title: '<span class="nocase">Coherence Generalises Duality: A Logical Explanation
+    of Multiparty Session Types</span>'
+  container-title: 27th international conference on concurrency theory (concur 2016)
+  collection-title: Leibniz international proceedings in informatics (lipics)
+  publisher: Schloss Dagstuhl–Leibniz-Zentrum fuer Informatik
+  publisher-place: Dagstuhl, Germany
+  page: 33:1-33:15
+  volume: '59'
+  annote: 'Keywords: Multiparty Session Types, Linear Logic, Propositions as Types'
+  URL: http://drops.dagstuhl.de/opus/volltexte/2016/6181
+  DOI: http://dx.doi.org/10.4230/LIPIcs.CONCUR.2016.33
+  ISBN: '978-3-95977-017-0'
+  ISSN: '1868-8969'
+...
+
