@@ -201,3 +201,58 @@ should not be any difficulty.
   DOI: http://dx.doi.org/10.1016/0022-0000(78)90014-4
   ISSN: '0022-0000'
 ...
+
+Coherence Generalises Duality: a Logical Explanation of Multiparty Session Types - Carbone Lindley Montesi Schurman Wadler - 2016
+=================================================================================================================================
+
+Abstract
+--------
+
+Wadler introduced Classical Processes (CP), a calculus based on a
+propositions-as-types correspondence between propositions of classical linear
+logic and session types. Carbone et al. introduced Multiparty Classical
+Processes, a calculus that generalises CP to multiparty session types, by
+replacing the duality of classical linear logic (relating two types) with a more
+general notion of coherence (relating an arbitrary number of types). This paper
+introduces variants of CP and MCP, plus a new intermediate calculus of
+Globally-governed Classical Processes (GCP). We show a tight relation between
+these three calculi, giving semantics-preserving translations from GCP to CP and
+from MCP to GCP. The translation from GCP to CP interprets a coherence proof as
+an arbiter process that mediates communications in a session, while MCP adds
+annotations that permit processes to communicate directly without centralised
+control.
+
+Summary
+-------
+
+The authors expand on previous literature of Classical Processes (CP) and
+Multiparty Classical Processes (MCP). Most notably, they introduce an
+intermediate calculus denoted Globally-governed Classical Processes (GCP). They
+prove bisimulations from CP to GCP and from GCP to MCP. Thus they show how
+coherence in MCP, where a global type is related to many local typers,
+generalizes the notion of duality in CP (relating two types).
+
+First, the authors introduce the previously developed notion of Classical
+Processes (CP). In CP, propositions are interpreted as session types. Output
+types correspond to the sender while input types correspond to a receiver. For
+example, the type $A \otimes B$ corresponds to sending $A$ and then proceeding
+as $B$, while the dual type $A amp B$ corresponds to receiving $A$ then
+proceeding as $B$. Syntax for processes and typing rules for these processes are
+given. Among these are the "Cut" rule, which combines parallel composition with
+name restriction. The typing rules exactly correspond to proof rules in
+classical linear logic. Thus, there is a variant of Curry-Howard for CP where
+propositions are session types and proofs are processes. Of course, semantics
+for CP are given, which include rules for cut reductions. This cut elimination
+corresponds to communication in this variant of Curry-Howard, similar to how
+normalization of proofs in propositional logic correspond to evaluation of
+programs in simply typed lambda calculus. A cut elimination theorem proves that
+all processes evaluate to something that is not a cut, similar to how all simply
+typed lambda caluclus programs terminate.
+
+The authors conclude the section with an example that shows some limitations of
+CP. This example, known as the two-buyer protocol, involves two buyers
+attempting to buy a book from a seller. The first buyer first communicates the
+name of the book to the seller, and the seller sends the price to both
+buyers. The first buyer sends to the second buyer how much he is willing to
+contribute, and the second buyer can either complete the transaction by paying
+the rest or cancel the transaction. This
