@@ -232,3 +232,35 @@ of future developers to see why the software is structured as it is.
   publisher-place: Berlin, Heidelberg
   page: '80-100'
 ...
+
+An Overview of JML Tools and Applications - Burdy Cheon Cok Ernst Kiniry Leavens Leino Poll - 2004
+==================================================================================================
+
+Abstract 
+--------
+
+The Java Modeling Language (JML) can be used to specify the detailed design of
+Java classes and interfaces by adding annotations to Java source files. The aim
+of JML is to provide a specification language that is easy to use for Java
+programmers and that is supported by a wide range of tools for specification
+type-checking, runtime debugging, static analysis, and verification.  This paper
+gives an overview of the main ideas behind JML, the different groups
+collaborating to provide tools for JML, and the existing applications of
+JML. Thus far, most applications have focused on code for programming smartcards
+written in the Java Card di- alect of Java.
+
+Summary
+-------
+
+JML is a Java-specific tool, made for a user to specify the intended behavior of
+a Java class or interface. The syntax was made to be very similar to syntax of
+Java. Among supported operations are requires and ensures clauses (pre- and
+post-condititions), invariants, etc. Quantification is also supported, and JML
+has built-in syntax for referring to an "old" value that may be modified in the
+method. Frame conditions can be specified using $\texttt{assignable}$; for
+example, writing $\texttt{assignable balance}$ ensures the method will only
+assign to the $\texttt{balance}$ field. JML can also support syntax for
+specifying the expected behavior when an exception is thrown. There are various
+tools for JML, discussed in detail below.
+
+
