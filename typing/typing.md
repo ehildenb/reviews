@@ -1,3 +1,8 @@
+---
+header-includes:
+- \usepackage{stmaryrd}
+---
+
 Polymorphism, Subtyping, and Type Inference in MLsub - Dolon Mycroft - 2017
 ===========================================================================
 
@@ -263,14 +268,14 @@ Next, Globally-governed Classical Processes (GCP) are introduced. In GCP, using
 coherence, the notion of duality seen in CP is generalized. Rather than
 restricting the framework to composing two processes, GCP allows composition of
 an aribtrary $n$ processes, governed by a *global type*. For example, if
-$\tilde{x}$ is a sequence of endpoints and $G,H$ are global types, $\tilde{x}
-\rightarrow y(G).H$ represents the process where each endpoint in $\tilde{x}$
-sends a message to $y$ to create a new session of type $G$ and continue as
-$H$. Typing rules and semantics for coherence are given, as well as a cut
-elimination theorem. The two-buyer protocol is then addressed again. With GCP,
-the arbiter process as before is no longer necessary, as all three processes can
-be composed easily with GCP. Finally, translations from CP to GCP and GCP to CP
-are given, and a bisimulation between these two is proved.
+$\tilde{x}$ is a sequence of endpoints and $G,H$ are global types,
+$\tilde{x} \rightarrow y(G).H$ represents the process where each endpoint in
+$\tilde{x}$ sends a message to $y$ to create a new session of type $G$ and
+continue as $H$. Typing rules and semantics for coherence are given, as well as
+a cut elimination theorem. The two-buyer protocol is then addressed again. With
+GCP, the arbiter process as before is no longer necessary, as all three
+processes can be composed easily with GCP. Finally, translations from CP to GCP
+and GCP to CP are given, and a bisimulation between these two is proved.
 
 Next, the authors address Multiparty Classical Processes (MCP). In the original
 presentation of MCP, output and input are inverted. The authors avoid making
@@ -283,11 +288,6 @@ for MCP are given, and they are very similar to those for GCP. Finally, a
 bisimulation between GCP and MCP is shown.
 
 ---
-header-includes:
-- \usepackage{stmaryrd}
-
----
-references:
 - id: carbone_et_al:LIPIcs:2016:6181
   type: paper-conference
   author:
