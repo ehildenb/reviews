@@ -261,6 +261,97 @@ method. Frame conditions can be specified using $\texttt{assignable}$; for
 example, writing $\texttt{assignable balance}$ ensures the method will only
 assign to the $\texttt{balance}$ field. JML can also support syntax for
 specifying the expected behavior when an exception is thrown. There are various
-tools for JML, discussed in detail below.
+tools integrated with JML, discussed in detail below.
 
+The Extended Static Checking (ESC/Java) tool does simple static analysis for
+Java code, such as dereferencing null and index out of bounds exceptions. It is
+a standalone tool, but it has support with integration for JML. For example,
+ESC/Java would normally warn a user when dereferencing a pointer. However, if a
+JML annotation is included with a precondition stating that pointer must not be
+null, ESC/Java would produce no such warning. Also, JML annotations can cause
+ESC/Java to perform additional static checks, such as warning the user if a
+precondition may be violated. By design, ESC/Java is neither sound nor complete
+in order to increase the cost-effectiveness of the tool. A list of cases of
+unsoundness and incompleteness are detailed in the ESC/Java User's Manual.
 
+A successor to ESC/Java, known as ESC/Java2 is currently in progress. This has
+various improvements over ESC/Java, including making sure it can always parse
+the most up-to-date version of JML. Most significantly, ESC/Java2 will have two
+major improvements over ESC/Java. First, it will integrate support for model
+variables and method calls in annotations. Second, it will have support for
+checking frame conditions like the $\texttt{assignable}$ clause mentioned
+above. However, the CHASE tool is another static analysis tool for JML that can
+currently handle these $\texttt{assignable}$ clauses. It is also neither sound
+nor complete.
+
+Clearly, a desired tool for JML is full program verification. The tool LOOP aims
+to provide this. It has a semantics for sequential Java and a formal semantics
+for JML defined in the PVS theorem prover. Then, the LOOP tool uses the JML
+annotations to generate a proof obligation for each method and constructor,
+expressed as a Hoare statement. LOOP does not intend to provide automatic
+verification, that is left to the PVS user. A similar tool known as Krakatoa
+also produces proof obligations for JML-annotated Java programs, but uses the
+Coq theorem prover rather than PVS. The JACK tool also aims to provide
+verification, though it does not require users to have expertise in a theorem
+prover. Instead, JACK is aimed to be usable by any Java developer, presenting
+goals and hypotheses in Java/JML-like notation.
+
+In addition to static analysis and verification, some tools for JML aim to help
+the user generate the JML specifications. The Daikon tool dynamically detects
+likely program invariants, by viewing computed values at runtime and
+generalizing over those values. Daikon can report properties about numbers,
+collections, pointers, conditionals, and more, and outputs properties in JML
+syntax. On the other hand, the Houdini tool can generate other types of JML
+annotations, specifically those a uses may have missed originally. Houdini
+generates candidate annotations, and then invokes ESC/Java to remove Candidate
+annotations which ESC/Java find to be inconsistent with the code.
+
+Currently, the most practical use of JML and associated tools have targeted Java
+Card, a dialect of Java for programming smartcards. Almost the entire
+specification of the Java Card API has been annotated with JML. Further,
+ESC/Java has been used to verify realistic implementations in Java Card. Many
+companies are willing to pay a lot of money to ensure relatively simple
+properties about smartcard programs, such as checking that no uncaught runtime
+exception reaches the top-level.
+
+The paper concludes with some related work. Other runtime assertion checkers for
+Java do not handle as much as JML can. SparkAda is a tool similar to JML, yet
+for the Ada programming language. OCL has an advantage over JML in that it is
+language-independent, though this can deter Java programmers, and no current
+formal semantics for OCL exist (though efforts to define a formal semantics for
+OCL are underway).
+
+---
+references:
+- id: BURDY200375
+  type: article-journal
+  author:
+  - family: Burdy
+    given: Lilian
+  - family: Cheon
+    given: Yoonsik
+  - family: Cok
+    given: David
+  - family: Ernst
+    given: Michael D.
+  - family: Kiniry
+    given: Joe
+  - family: Leavens
+    given: Gary T.
+  - family: Rustan
+    given: K.
+  - family: Leino
+    given: M.
+  - family: Poll
+    given: Erik
+  issued:
+  - year: '2003'
+  title: An overview of jml tools and applications1 1www.jmlspecs.org
+  container-title: Electronic Notes in Theoretical Computer Science
+  page: 75 - 91
+  volume: '80'
+  keyword: formal methods
+  URL: http://www.sciencedirect.com/science/article/pii/S1571066104808107
+  DOI: http://dx.doi.org/10.1016/S1571-0661(04)80810-7
+  ISSN: '1571-0661'
+...
