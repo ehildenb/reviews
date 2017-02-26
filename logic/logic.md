@@ -131,8 +131,7 @@ discussion about the set of all $\lambda$-theories, which naturally forms a
 complete lattice.
 
 ---
-references:
-- id: DBLP:journals/corr/abs-0904-4756
+- id: manzonetto-models-theories-lambda-calculus
   type: article-journal
   author:
   - family: Manzonetto
