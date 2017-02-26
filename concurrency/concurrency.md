@@ -124,6 +124,61 @@ Concurrent Object Oriented Programming - Agha - 1990
 Summary
 -------
 
+Distributed software systems exhibit *concurrency*, where many different
+computations can be happenning simultaneously. Additionally, object-oriented
+programming has risen as a popular way to organize data and code into modular
+sub-components and provides abstraction techniques for programmers. This paper
+discusses *concurrent object oriented programming* (COOP), which allows for
+concurrent execution of code in multiple objects and supports *message passing*
+between them as a communication medium.
+
+Different problems have different concurrency structure. For example a sieve
+approach to testing primality demonstrates *pipeline concurrency*; as candidate
+solutions are generated they can concurrently be tested for primality (usually
+done sequentially afterward). *Divide and conquer concurrency*, alternatively,
+fits problems like summing a binary tree of numbers; the problem can be broken
+into similar sub-problems and the solution obtained from some operation over
+sub-solutions. In *cooperative problem solving*, tasks are broken into sub-tasks
+and intermediate results are stored in objects for all the workers to access and
+update as they work.
+
+### Actor Model
+
+The actor model of computation encapsulates COOP by allowing for distinct
+*actors* (objects with mailboxes) which can send and recieve messages to each
+other (to request computations/recieve results). Each actor executes on its own
+independently of other actors, and messages are sent asynchronously between
+them. The atomic actor primitives are *create* (make a new actor with a
+specified behaviour and initial data), *send* (send a message to a specified
+actor), and *become* (replace current actor with new behaviour and data).
+
+Control structures in actor languages correspond to message-passing patterns.
+For example, the `factorial` actor, when queried with the input `n`, will
+create a *customer* `A` which it sends the number `n` and the behavior of "wait
+for another number to multiply `n` with". Then the `factorial` actor would call
+itself with the request "compute `factorial (n-1)` and send it to actor `A`".
+This doesn't speed up calculating factorial, but allows the `factorial` actor to
+immediately begin responding to other requests to compute factorial.
+
+Many actors would naturally be associated to functions (same input results in
+same output), but some may have history-sensitive output. In that case, the
+*become* primitive is useful for changing out some local state of the actor to
+reflect the affect of history on the outputs of the actor.
+
+A traditional join-point in a parallel program is similarly represented as a
+*join continuation*. An actor must comput sub-expressions $e_i, i \in 1..n$, so
+it will create sub-actors $A_i$, each one which computes one sub-expression and
+sends the result to the join-continuation actor $B$. Once $B$ has all the
+results, it can compute the overall output. Because of the asynchronous nature,
+each $A_i$ can compute completely in parallel, and the original actor can
+immediately begin processing other requests.
+
+To make concurrent computation feasible, a notion of *fair merge* is needed;
+this specifies that every messsage sent will eventually reach its destination.
+The actor model implicitely has this assumption, because it states that every
+message sent to an actor must eventually be received.
+
+
 ---
 - id: agha-concurrent-object-oriented-programming
   type: article-journal
