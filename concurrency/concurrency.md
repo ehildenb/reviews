@@ -153,9 +153,9 @@ specified behaviour and initial data), *send* (send a message to a specified
 actor), and *become* (replace current actor with new behaviour and data).
 
 Control structures in actor languages correspond to message-passing patterns.
-For example, the `factorial` actor, when queried with the input `n`, will
-create a *customer* `A` which it sends the number `n` and the behavior of "wait
-for another number to multiply `n` with". Then the `factorial` actor would call
+For example, the `factorial` actor, when queried with the input `n`, will create
+a *customer* `A` which it sends the number `n` and the behavior of "wait for
+another number to multiply `n` with". Then the `factorial` actor would call
 itself with the request "compute `factorial (n-1)` and send it to actor `A`".
 This doesn't speed up calculating factorial, but allows the `factorial` actor to
 immediately begin responding to other requests to compute factorial.
@@ -166,17 +166,97 @@ same output), but some may have history-sensitive output. In that case, the
 reflect the affect of history on the outputs of the actor.
 
 A traditional join-point in a parallel program is similarly represented as a
-*join continuation*. An actor must comput sub-expressions $e_i, i \in 1..n$, so
+*join continuation*. An actor must compute sub-expressions $e_i, i \in 1..n$, so
 it will create sub-actors $A_i$, each one which computes one sub-expression and
 sends the result to the join-continuation actor $B$. Once $B$ has all the
 results, it can compute the overall output. Because of the asynchronous nature,
 each $A_i$ can compute completely in parallel, and the original actor can
 immediately begin processing other requests.
 
-To make concurrent computation feasible, a notion of *fair merge* is needed;
-this specifies that every messsage sent will eventually reach its destination.
-The actor model implicitely has this assumption, because it states that every
-message sent to an actor must eventually be received.
+To make concurrent computation feasible, a notion of *fair merge[^fair_merge]*
+is needed; this specifies that every messsage sent will eventually reach its
+destination. The actor model implicitely has this assumption by stating that
+every message sent must eventually be received. Delivery of messages in an
+asynchronous setting cannot be guaranteed, but there are intermediate delivery
+guarantees that can be useful in practice too.
+
+[^fair_merge]: A *fair merge* of two strings is a third string where each
+               element from each input string must appear eventually.
+               <https://en.wikipedia.org/wiki/Unbounded_nondeterminism>
+    
+### Building Actor Systems
+
+The Actor primitives are low-level (an assembly of distributed systems);
+realistic system building should be done with higher-level comunication,
+synchronization, and coordination primitives. For example, when making function
+calls the plumbing of sending arguments and recieving the results in a
+continuation actor can be inserted automatically. Another example would be
+primitives for implementing synchronization protocols which provide various
+guarantees on the behaviour of the network.
+
+*Event diagrams* display traces of actor systems and can be used to debug the
+system by examining the sequence of events that led to a bad state. Because they
+can be needlessly verbose in a system of reasonable size, sub-sequences of
+events can be bundled into *transactions*; transactions can have
+sub-transactions, and two transactions must not overlap on their
+sub-transactions. This logical grouping of events makes debugging and
+visualizing actor systems realistic.
+
+Interacting with system resources in a concurrent programming language can be
+tough, due to the potential explosion in the number of sub-computations. Some
+computation paths may be higher priority, or more efficient to explore early.
+One can model this with *sponsor* actors, which connect to the underlying
+resources and use their communication to control actor creation and scheduling.
+These sponsors can also recognize some computation patterns and try to optimize
+them (eg. folding multiple requests together).
+
+### Other Models of Objects
+
+Another concurrent model of objects is *sequential concurrent processes*. The
+sequential computation primitives are often specific to a particular
+architecture, making some of the concurrency less available or efficient. A
+better approach would be to provide compilers to each architecture for the actor
+programs, which would take advantage of that systems resources.
+
+At least two models of expression evaluation are possible. In *call/return
+style*, sub-expressions are evaluated (possible concurrently) and the results
+passed back and substituted in the overall expression before evaluation
+continues. In *customer passing style*, sub-expressions are evaluated and then
+forwarded to the *customer* actor (the join-continuation), which takes the
+values of the sub-expressions and computes the result of the overall expression.
+In customer passing style, the original actor is freed up to immediately process
+the next request instead of waiting for results.
+
+In most concurrent languages, synchronization is explicit. Implicit
+synchronozation schemes (eg. evaluation of sub-expressions should be
+attempted/performed synchronously) can be specified on actor systems, allowing
+for more concise programming.
+
+Reasoning about object behaviour is simplified in the actor model. Actors can be
+defined independently and modularly, allowing local reasoning but abstracting
+over internal actor state. Additional locality laws which govern how actors can
+know each other's name provide the ability to reason about *open distributed*
+actor systems.
+
+### Object Oriented Programming
+
+OOP supports code reusability by grouping semantically related data and
+operations. Inheritance and reflection are useful aspects of OOP languages.
+
+A *class* acts as a grouping of common data and operations from which objects
+are templated off of. Having *inheritance* between classes allows for re-use of
+common code, in order to keep changes to data or operations localized to
+relevant classes and objects. Inheritance may change synchronization conditions.
+
+Many parts of the state of execution of a system are implicit (eg. settings in
+the environment/runtime). If a language supports *reflection*, these pieces of
+data can be *reified* into objects which can be manipulated and then inserted
+back into place, providing a mechanism for modifying and controlling the
+environment/runtime from within the language.
+
+### Research Efforts
+
+Several projects investigating actor systems and COOP are provided.
 
 
 ---
