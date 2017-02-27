@@ -275,3 +275,61 @@ Several projects investigating actor systems and COOP are provided.
   URL: http://doi.acm.org/10.1145/83880.84528
   DOI: 10.1145/83880.84528
 ...
+
+A Foundation for Actor Computation - Agha Mason Smith Talcott - 1993
+====================================================================
+
+Abstract
+--------
+
+We present an actor language which is an extension of a simple functional
+language, and provide a precise operational semantics for this extension. Actor
+configurations represent open distributed systems, by which we mean that the
+specification of an actor system explicitly takes into account the interface
+with external components. We study the composability of such systems. We define
+and study various notions of testing equivalence on actor expressions and
+configurations. The model we develop provides fairness. An important result is
+that the three forms of equivalence, namely, convex, must, and may equivalences,
+collapse to two in the presence of fairness. We further develop methods for
+proving laws of equivalence and provide example proofs to illustrate our
+methodology.
+
+Summary
+-------
+
+The actor model is an intuitive way to model concurrent computation through a
+series of local components, known as actors. The authors extend normal lambda
+calculus and present a particular actor language. They have a notion of actor
+configurations, which includes a composition operator that is associative,
+commutative, and has a unit. This helps remedy one of the main drawbacks of the
+actor model, as normally actor models cannot be composed. They define an
+operational semantics of actor configurations, including an explicit fairness
+requirement. An equational theory is also developed based on the notion of
+observational equivalence.
+
+### Actor Language Constructs
+
+The actor language presented provides primitives for local computation. These
+are *send*, *become*, *newadr*, and *initbeh*. $\textsf{send}(a, v)$ sends a
+message with contents $v$ to $a$. $\textsf{become}(b)$ creates a new actor to
+carry out the rest of the computation, and changes the behavior of the current
+actor to $b$. $\textsf{newadr}()$ creates a new actor and returns its address,
+and $\textsf{initbeh}(a,b)$ initializes an actor at adress $a$ to have behavior
+$b$.
+
+In this actor language, one can easily represent objects with local state,
+similar to a reference cell in ML. One can also express a *join continuation* to
+carry out concurrent computation, as a join continuation synchronizes the
+evaluation of different arguments. For example, one can use such a join
+continuation to compute the product of all leaves of a tree, since the arguments
+to the multiplication operator $\cdot$ can be evaluated concurrently.
+
+### A Simple Lambda-Based Actor Language
+
+### Equivalence of Expressions
+
+### Laws of Expression Equivalence
+
+### Proving Expression Equivalence
+
+### Discussion
