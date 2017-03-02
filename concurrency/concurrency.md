@@ -420,3 +420,31 @@ starting point more than anything else. Areas for future work include developing
 an algebra on configurations, further study on the notions of equivalence (such
 as configuration equivalence), and determining whether or not there is a context
 lemma for observational equivalence of expressions.
+
+---
+references:
+- id: Agha:1997:FAC:969900.969901
+  type: article-journal
+  author:
+  - family: Agha
+    given: Gul A.
+  - family: Mason
+    given: Ian A.
+  - family: Smith
+    given: Scott F.
+  - family: Talcott
+    given: Carolyn L.
+  issued:
+  - year: '1997'
+    month: '1'
+  title: A foundation for actor computation
+  container-title: J. Funct. Program.
+  publisher: Cambridge University Press
+  publisher-place: New York, NY, USA
+  page: '1-72'
+  volume: '7'
+  issue: '1'
+  URL: http://dx.doi.org/10.1017/S095679689700261X
+  DOI: 10.1017/S095679689700261X
+  ISSN: '0956-7968'
+...
