@@ -326,10 +326,97 @@ to the multiplication operator $\cdot$ can be evaluated concurrently.
 
 ### A Simple Lambda-Based Actor Language
 
+Next, the actor language is made rigorous. First, explicit syntax is given, and
+then *actor configurations* are defined. An actor configuration is of the form
+$\langle \alpha \mid \mu \rangle ^\rho_\chi$. Here, $\alpha$ represents the
+actor map, $\mu$ is a multiset of messages, $\rho$ represents the
+*receptionists*, or names of externally visible actors, and $\chi$ are external
+actors outside the configuration to which messages may be directed. The
+operational semantics are specified using a reduction semantics. Two
+configurations are composable if the $\alpha$'s have disjoint domains, and the
+external actors for the first configuration intersected with the domain of the
+actor map for the second is a subset of the receptionists of the second (and
+vice versa). Associativity, commutativity, and identity axioms are proved for
+such composable configurations.
+
 ### Equivalence of Expressions
+
+A notion of expression equivalence is defined, which informally is true if two
+program expressions behave the same when placed in any observing context. In
+this case, an "observing context" is replaced with an "observing actor
+configuration", or a configuration that contains an actor state with a hole. The
+reduction semantics is extended with a rule representing if an expression is
+observed.
+
+Because the language is nondeterministic, an event may definitely occur,
+definitely not occur, or occur on some executions and not occur on others. The
+notion $Obs(\kappa)$ is defined, where $\kappa$ is a configuration. This yields
+$\textbf{s}$ if all paths succeed, $\textbf{f}$ if all paths fail, and
+$\textbf{sf}$ is there is a path that succeeds and a path that fails. Then,
+three notions of observational equivalence of expressions is defined. One states
+that $Obs(O[e_1]) = Obs(O[e_1])$ where $O$ is a context containing one hole. The
+other two state that just the successes must coincide and the failures must
+coincide. Relations between these definitions are proved, most notably that the
+defintion stating that all observations are equal is equivalent to the
+definition that just the successes are equal. This equivalence arises because of
+the fairness requirement, and it is the notion of equivalence ($\cong$) used in
+the rest of the paper. Equivalence of configurations is also discussed, yielding
+the result that replacing an expression occurring in a configuration by an
+observationally equivalent one yields an equivalent expression.
 
 ### Laws of Expression Equivalence
 
+After establishing this notion of expression equivalence, a library of useful
+equivalences can be established. These include a variety of laws such as
+$\textsf{app}(\lambda x.e, v) \cong e[x := v]$ that can be seen as instances of
+the general theorem $e_0 \mapsto^\lambda e_1 \Rightarrow e_0 \cong e_1$. Similar
+notions of equivalence involving reduction contexts, such as $\textsf{let}\{x :=
+e\}R[x] \cong R[e]$ are also established. Laws for equivalence on the actor
+primitives can also be established, though since $\textsf{send}$,
+$\textsf{become}$, and $\textsf{initbeh}$ all return $\textsf{nil}$, these laws
+arre limiting.
+
+Next, since understanding how actor primitives interact with one another is very
+important, commuting operations are discussed. Expressions $e_0$ and $e_1$ are
+said to commute if
+
+> $\textsf{let}\{x_0 := e_0\}\textsf{let}\{x_1 := e_1\}e \cong \textsf{let}\{x_1
+> := e_1\}\textsf{let}\{x_0 := e_0\}e$
+
+A lemma for when each of the primitive operations commute is proved, such as
+$\textsf{newadr}$ commutes with $\textsf{send}, \textsf{newadr}$, and
+$\textsf{initbeh}$, but not with $\textsf{become}$. Finally, it is proved that
+any two expressions $e_0$ and $e_1$ commute is every operation occurring in
+$e_0$ commutes with every operation occuring in $e_1$, and $e_0$ and $e_1$ are
+built up using only the operations $\textsf{if}$ and $\textsf{let}$.
+
 ### Proving Expression Equivalence
 
+Next, three different variants for expression equivalence are
+discussed. Informally, the *common reduct case* concerns equivalence of
+expressions with a common reduct, the *two-stage reduction case* concerns
+expressions that reduce to lambda abstractions that are application equivalent,
+and the *equivalence of reduction contexts case* treats equivalence of reduction
+contexts.
+
+In each of these approaches, a class of *configuration templates* $CT$ is chosen
+such that $e_0 \cong e_1$ if $Obs(ct[e_0]) = Obs(ct[e_1])$ for each $ct \in
+CT$. Such configuration templates are chosen by extending each syntactic class
+to allow holes and defining appropriate notions of hole filling. This is done
+for each variant of expression equivalence. In the common reduct case, a single
+hole is added for expressions. In the two-stage reduction case, a countable
+family of holes need to be added for lambda abstractions. In the equivalence of
+reduction contexts case, a new hole is added for reduction contexts.
+
+For each of these (after a lot of notation), main theorems are given for when
+two expressions are equivalent. For example, in the equivalence of reduction
+contexts case, if $R_j[\square := z]$ reduces uniformly to some expression $e$
+for each $j$, then $R_0[\square := e] \cong R_1[\square := e]$ for any $e$.
+
 ### Discussion
+
+Future work is discussed, as the authors view the theory in this paper as a
+starting point more than anything else. Areas for future work include developing
+an algebra on configurations, further study on the notions of equivalence (such
+as configuration equivalence), and determining whether or not there is a context
+lemma for observational equivalence of expressions.
