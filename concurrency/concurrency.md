@@ -448,3 +448,111 @@ references:
   DOI: 10.1017/S095679689700261X
   ISSN: '0956-7968'
 ...
+
+Rewriting Logic as a Semantic Framework for Concurrency: a Progress Report - Meseguer - 1996
+============================================================================================
+
+Abstract
+--------
+
+This paper surveys the work of many researchers on rewriting logic since it was
+first introduced in 1990. The main emphasis is on the use of rewriting logic as
+a semantic framework for concurrency. The goal in this regard is to express as
+faithfully as possible a very wide range of concurrency models, each on its own
+terms, avoiding any encodings or translations. Bringing very different models
+under a common semantic framework makes easier to understand what different
+models have in common and how they differ, to find deep connections between
+them, and to reason across their different formalisms. It becomes also much
+easier to achieve in a rigorous way the integration and interoperation of
+different models and languages whose combination offers attractive
+advantages. The logic and model theory of rewriting logic are also summarized, a
+number of current research directions are surveyed, and some concluding remarks
+about future directions are made.
+
+Summary
+-------
+
+### Rewriting Logic
+
+A *sentence* of rewriting logic in an equational theory $(\Sigma, E)$ is a
+sequent of the form $[t]_E \rightarrow [t']_E$. A *rewrite theory* is a set
+$\mathcal R = (\Sigma, E, L, R)$, where $L$ is a set of labels and $R$ is a set
+of *rewrite rules*. Entailment for a theory $\mathcal R$ contains four rules:
+reflexivity, congruence, replacement, and transitivity.
+
+Models of a rewrite theory $\mathcal R$ are categories $\mathcal T_\mathcal
+R(X)$ where objects are equivalence classes of terms and morphisms are
+
+equivalence classes of "proof terms" representing proofs in rewriting
+deduction. The rules for generating proof terms correspond exactly to the
+entailment rules for a rewrite theory. The models also have equations to make it
+a category, make each funcition a functor, forcing the equations $E$ as axioms,
+and asserting that rewrites correspond to natural transformations. 
+
+An $\mathcal R$-*system* is a category $S$ together with a $(\Sigma, E)$-algebra
+structure given by a family of functors satisfying the equations $E$. This
+defines a category denoted $\mathcal R$-Sys. With variables $X$ as the empty
+set, the model $\mathcal T_\mathcal R(\emptyset) = \mathcal T_\mathcal R$ is an
+initial object in $\mathcal R$-Sys.
+
+### Rewriting Logic as a Semantic Framework for Concurrency
+
+<!-- While functional computations are amenable to parallelization, they are -->
+<!-- inherently *determinate*, i.e. the final result will always be a unique -->
+<!-- value. On the other hand, rewrite theories may not have this property, and in -->
+<!-- fact they may not even terminate. -->
+
+Different concurrent frameworks are discussed, and we go over some of them below.
+
+A labelled transition system is a "poor man's rewrite theory". Specifically, it
+is a rewrite theory where $\Sigma$ is only constants, there are no equations,
+and all the rules are the form $a \rightarrow b$ for constants $a$ and
+$b$. Since states are not decomposable, an LTS can be nondeterministic, but
+cannot exhibit concurrency.
+
+Petri nets are a very simple concurrency model. They can be expressed as rewrite
+theories very naturally. States of petri nets are alegbraically axiomatized by
+associative/commutative multiset union operations with the empty multiset as
+identity. Transitions in petri nets are simply labelled rewrite rules between
+two of these states.
+
+Another common model of concurrency is the Chemical Abstract Machine (CHAM),
+which views distributed states as a "solution" in which many "molecules"
+float. Concurrent transitions occur simultaneously as "reactions". Again, this
+specifies an ACI equational theory with multisets, generalizing Petri nets.
+
+For a general concurrent object-oriented system, configurations can be of the
+form $\langle O : C \mid a_1 : v_1, \ldots, a_n : v_n \rangle$ where $O$ is the
+object's name, $C$ is its class, and $a_i : v_i$ represent an attribute
+identifier and its corresponding value. A bounded buffer example is given, along
+with rules that illustrate the asynchronous message passing communication
+between objects of typical actory systems. Additionally, object interaction that
+is not asynchronous can also be modeled.
+
+Application of rewriting logic to real-time specification has been developed,
+denoted *timed rewriting logic*. Axioms are of the form $t \rightarrow_r t'$,
+meaning that $t$ evolves to $t'$ in time $r$. Rewriting logic can be seen as an
+instance of timed rewriting logic where all rules have time $r = 0$. However,
+alternatively effort is underway to model real-time systems using standard
+rewriting. To do this, the models considered are *timed automata*, which can
+naturally be represented in rewriting logic.
+
+### Rewriting Logic Languages
+
+Next, several rewriting logic languages are discussed. The most notable
+implementation of rewriting logic is Maude. Maude is based on a typed version of
+rewriting logic. It is order-sorted and supports sort constraints. It has
+functional modules that are Church-Rosser and terminating equational theories,
+system modules that specify general rewrite theories, and object-oriented
+modules, though of course it is still a strict subset of the full power of
+rewriting logic.
+
+### Other Developments and Research Directions
+
+Related and future work are discussed. These include the notion that models of
+rewriting logic have a very natural 2-categorical interpretation, which has
+provided useful in connections with other concurrency theory models. Another
+area of related work is how to remedy the fact that all concurrent computations
+of a rewrite theory are finite, as one may want to consider infinite
+computations. Other areas discussed include formal reasoning, rewriting logic as
+a logical framework, and reflective logic.
