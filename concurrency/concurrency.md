@@ -374,7 +374,7 @@ notions of equivalence involving reduction contexts, such as $\textsf{let}\{x :=
 e\}R[x] \cong R[e]$ are also established. Laws for equivalence on the actor
 primitives can also be established, though since $\textsf{send}$,
 $\textsf{become}$, and $\textsf{initbeh}$ all return $\textsf{nil}$, these laws
-arre limiting.
+are limiting.
 
 Next, since understanding how actor primitives interact with one another is very
 important, commuting operations are discussed. Expressions $e_0$ and $e_1$ are
@@ -476,33 +476,35 @@ Summary
 
 A *sentence* of rewriting logic in an equational theory $(\Sigma, E)$ is a
 sequent of the form $[t]_E \rightarrow [t']_E$. A *rewrite theory* is a set
-$\mathcal R = (\Sigma, E, L, R)$, where $L$ is a set of labels and $R$ is a set
-of *rewrite rules*. Entailment for a theory $\mathcal R$ contains four rules:
+$\mathcal{R} = (\Sigma, E, L, R)$, where $L$ is a set of labels and $R$ is a set
+of *rewrite rules*. Entailment for a theory $\mathcal{R}$ contains four rules:
 reflexivity, congruence, replacement, and transitivity.
 
-Models of a rewrite theory $\mathcal R$ are categories $\mathcal T_\mathcal
-R(X)$ where objects are equivalence classes of terms and morphisms are
+Models of a rewrite theory $\mathcal{R}$ are categories
+$\mathcal T_{\mathcal{R}(X)}$ where objects are equivalence classes of terms and
+morphisms are equivalence classes of "proof terms" representing proofs in
+rewriting deduction. The rules for generating proof terms correspond exactly to
+the entailment rules for a rewrite theory. The models also have equations to
+make it a category, make each function a functor, forcing the equations $E$ as
+axioms, and asserting that rewrites correspond to natural transformations.
 
-equivalence classes of "proof terms" representing proofs in rewriting
-deduction. The rules for generating proof terms correspond exactly to the
-entailment rules for a rewrite theory. The models also have equations to make it
-a category, make each funcition a functor, forcing the equations $E$ as axioms,
-and asserting that rewrites correspond to natural transformations. 
-
-An $\mathcal R$-*system* is a category $S$ together with a $(\Sigma, E)$-algebra
-structure given by a family of functors satisfying the equations $E$. This
-defines a category denoted $\mathcal R$-Sys. With variables $X$ as the empty
-set, the model $\mathcal T_\mathcal R(\emptyset) = \mathcal T_\mathcal R$ is an
-initial object in $\mathcal R$-Sys.
+An $\mathcal{R}$-*system* is a category $S$ together with a
+$(\Sigma, E)$-algebra structure given by a family of functors satisfying the
+equations $E$. This defines a category denoted $\mathcal{R}$-Sys. With variables
+$X$ as the empty set, the model
+$\mathcal T_\mathcal{R}(\emptyset) = \mathcal T_\mathcal{R}$ is an initial
+object in $\mathcal{R}$-Sys.
 
 ### Rewriting Logic as a Semantic Framework for Concurrency
 
-<!-- While functional computations are amenable to parallelization, they are -->
-<!-- inherently *determinate*, i.e. the final result will always be a unique -->
-<!-- value. On the other hand, rewrite theories may not have this property, and in -->
-<!-- fact they may not even terminate. -->
+<!-- While functional computations are amenable to parallelization, they are
+     inherently *determinate*, i.e. the final result will always be a unique
+     value. On the other hand, rewrite theories may not have this property, and in
+     fact they may not even terminate.
+-->
 
-Different concurrent frameworks are discussed, and we go over some of them below.
+Different concurrent frameworks are discussed, and we go over some of them
+below.
 
 A labelled transition system is a "poor man's rewrite theory". Specifically, it
 is a rewrite theory where $\Sigma$ is only constants, there are no equations,
@@ -533,9 +535,9 @@ Application of rewriting logic to real-time specification has been developed,
 denoted *timed rewriting logic*. Axioms are of the form $t \rightarrow_r t'$,
 meaning that $t$ evolves to $t'$ in time $r$. Rewriting logic can be seen as an
 instance of timed rewriting logic where all rules have time $r = 0$. However,
-alternatively effort is underway to model real-time systems using standard
-rewriting. To do this, the models considered are *timed automata*, which can
-naturally be represented in rewriting logic.
+effort is underway to model real-time systems using standard rewriting. To do
+this, the models considered are *timed automata*, which can naturally be
+represented in rewriting logic.
 
 ### Rewriting Logic Languages
 
