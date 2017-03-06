@@ -2,6 +2,9 @@
 \newcommand{\lif}{\rightarrow}
 \newcommand{\always}{\square}
 \newcommand{\eventually}{\diamond}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\E}{\mathcal{E}}
 
 An Axiomatic Basis for Computer Programming - Hoare - 1969
 ==========================================================
@@ -242,8 +245,8 @@ First-Order Logic (FOL):
     in their place, yielding formulas with only universal quantification. Using
     the Herbrand theorem, one can more easily demonstrate unsatisfiability of
     such formulas. Other interesting results about FOL include the *compactnes*
-    theorem, the L"owenheim-Skolem theorem, the *almalgamation* theorem, and the
-    encodability of the halting-problem.
+    theorem, the Lowenheim-Skolem theorem, the *almalgamation* theorem, and
+    the encodability of the halting-problem.
 
     A *first-order theory* is a set of first-order sentences $\Gamma$ closed
     under logical *entailment*. A theory is *finitely axiomatizable* there is a
@@ -305,3 +308,202 @@ Higher-order Logic:
     interperet function types as maps between sets, are complete. Monadic
     second-order logic restricts the higher-order variables to monadic
     predicates (unary predicates), which makes it decidable.
+
+A New Correctness Proof of the Nelson-Oppen Combination Procedure - Tinelli Harandi - 1996
+==========================================================================================
+
+Abstract
+--------
+
+The Nelson-Oppen combination procedure, which combines satisfiability procedures
+for a class of first-order theories by propagation of equalities between
+variables, is one of the most general combination methods in the field of theory
+combination. We describe a new nondeterministic version of the procedure that
+has been used to extend the Constraint Logic Programming Scheme to unions of
+constraint theories. The correctness proof of the procedure that we give in this
+paper not only constitutes a novel and easier proof of Nelson and Oppen's
+original results, but also shows that equality sharing between the
+satisfiability procedures of the component theories, the main idea of the
+method, can be confined to a restricted set of variables. While working on the
+new correctness proof, we also found a new characterization of the consistency
+of the union of first-order theories. We discuss and give a proof of such
+characterization as well.
+
+Summary
+-------
+
+Nelson and Oppen provided one of the first combination theories for first-order
+theories, with much effort since then focused on the more specific cases of
+equational theories and unification problems. The generalting of the
+Nelson-Oppen (NO) method means that it has use in constraint logic programming
+for combining theories there. In this paper, consistency of combined first-order
+theories is discussed, and a proof of the NO method's correctness for combining
+theories is supplied.
+
+### The Nelson and Oppen Combination Procedure
+
+Assume we have decision procedules for multiple theories $\T_1, ..., \T_n$ over
+disjoint signatures $\Sigma_1, ..., \Sigma_n$, and define the *simple
+Conjunction Normal Form* formulas for a theory to be conjunctions of literals
+(denoted $sCNF(\T)$ for theory $\T$). Define $\T := \bigcup_{i=1}^n \T_i$ and
+$\Sigma := \bigcup_{i=1}^n \Sigma_i$. Given procedures to decide satisfiability
+in each $\T_i$, the NO method can decide satisfiability in $\T$ (under
+assumptions on the theories $\T_i$).
+
+Because a formula $\phi$ for theory $\T$ may contain mixed symbols from any of
+the sub-theories $\T_i$, it's necessary to define the *separate form* of
+$\phi$ as $\phi' := \phi_1 \land ... \land \phi_n$, where $\phi_i \in
+sCNF(\T_i)$. This separate form is achieved by *abstraction* of the sub-terms
+and sub-formulas which do not belong to the same sub-theory as their enclosing
+context (call the sub-term an *alien sub-term*). To get to this purified form,
+take equations of the form $t_1 = t_2$ and generate the conjunct $z = t_1 \land
+z = t_2$ (for $z$ a fresh variable). Additionally, for an alien sub-term $t$ in
+$\phi[t]$, replace $t$ with a fresh variable $x$ (to get $\phi[x]$) and add
+the equation $x = t$.
+
+Given any formula $\phi$ with separate form
+$\phi' = \phi_1 \land ... \land \phi_n$, we have that $\phi$ is satisfiable in
+$\T$ iff $\exists \overline{z} . \phi'$ is satisfiable in $\T$ (where
+$\overline{z}$ are the variables introduced in separation). It may be the case
+that every separate formula $\phi_i$ is satisfiable in its component theory, but
+that $\phi'$ as a whole is not satisfiable. To remedy there, the Nelson-Oppen
+procedure propagates derived equalities of variables between each component
+$\phi_i$. It may be the case that a single equality is not enough to establish
+satisfiability in some $\T_i$, but that a disjunction of equalities is needed;
+in this case $\T_i$ is *non-convex* and the Nelson-Oppen combination procedure
+must be implemented to reason by cases efficiently to handle these disjunctions.
+
+Without loss of generality, the rest of the paper focuses on the case of two
+component theories $\T_1$ and $\T_2$ (for simplicity). An *arrangement* of a
+separate form $\phi_1 \land \phi_2$ is defined as some partition on the shared
+variables of $\phi_1$ and $\phi_2$, representing the choices of which to make
+equal and which to make dis-equal. For every pair of variables (say $x_1$
+and $x_2$) shared by the formulas, either $x_i = x_j$ or $x_i \neq x_j$ must
+show up in the arrangement, and the arrangement equalities must be an
+equivalence relation on the set of shared variables.
+
+A non-deterministic algorithm for deciding satisfiability in the combined theory
+$\T$ is given (assuming some conditions on the sub-theories $\T_i$, described
+later). The algorithm has two phases; (i) non-deterministically select some
+arrangement of the shared variables $\overline{x}$ denoted $ar(\overline{x})$ and
+then (ii) check that $\phi_i \land ar(\overline{x})$ is satisfiable in $\T_i$ for
+$i \in \{1,2\}$. If there is an arrangement making it satisfiable, the
+non-determinism in the algorithm ensures it is picked, otherwise the formulas
+together are unsatisfiable. Note that this non-deterministic presentation also
+side-steps any issues in non-convexity of theories described above. A
+determinstic implementation that gains in incrementality but must implement
+backtracking for non-convex theories is also discussed.
+
+### Correctness of the Combination Procedure
+
+The union of two theories $\T_1$ and $\T_2$ (denoted $\T_1 \cup \T_2$) is the
+deductive closure of $\T_1 \cup \T_2$ (recall that a theory $\T_1$ is the set of
+all sentences deductively provable from $\T_1$). Combining theories is not
+straightforward because often properties of the component theories (in
+particular *consistency*) are not *modular*.
+
+Proposition 3.1 gives necessary and sufficient conditions under which theories
+can be combined to yield a consistent theory:
+
+> Suppose two theories $\T_1$ and $\T_2$ are consistent (and have disjoint
+> signatures $\Sigma_1$ and $\Sigma_2$). Then the union $\T_1 \cup \T_2$ is
+> consistent iff there is a cardinal $\kappa$ such that both $\T_1$ and $\T_2$
+> have a model of cardinality $\kappa$.
+
+Proposition 3.2 generalizes proposition 3.1 slightly to reason about unions of
+arbitrary consistent theories (instead of just signature disjoint theories)
+using reducts of their models:
+
+> Let $\T_1$ and $\T_2$ be two consistent theories with respective signatures
+> $\Sigma_1$ and $\Sigma_2$. Their union is consistent iff there is a model
+> $\M_1$ of $\T_1$ and a model $\M_2$ of $\T_2$ such that their reducts to
+> $\Sigma_1 \cap \Sigma_2$ are isomorphic.
+
+Using the upward Lowenheim-Skolem theorem and proposition 3.1, one obtains
+Corollary 3.3:
+
+> Let $\T_1$ and $\T_2$ be as in proposition 3.1, but such that they both admit
+> an infinite model. Then their union is consistent.
+
+By considering equational theories (which admit axiomatizations in the
+universally quantified equational fragment of FOL), and defining an equational
+theory $\E$ as *$E$-consistent* if it admits a model of cardinality greater than
+1, we get corollary 3.4:
+
+> Let $\E_1$ and $\E_2$ be two signature-disjoint equational theories. If they
+> are $E$-consistent, then so is $\E_1 \cup \E_2$.
+
+Now we have the machinery to identify the conditions on component theories that
+make the above Nelson-Oppen decision-procedure combination method sound and
+complete w.r.t. the combined theories. The authors motivate these conditions
+with an example formula $\phi := \phi_1 \land \phi_2$, where
+$\phi_i \in sCNF(\T_i)$ and $\T_1$ only admits finite models while $\T_2$ only
+admits infinite models. This formula and a corresponding arrangment selected by
+the NO-combination procedure is satisfiable in each individual theory, but in
+the combined theory there is no satisfying assignment. Given the upward
+Lowenheim-Skolem theorem, it's sufficient to require that each component theory
+$\T_i$ is *stably-infinite* (definition 3.3):
+
+> A consistent quantifier-free theory $\T$ with signature $\Sigma$ is called
+> *stably-infinite* iff any quantifier-free $\Sigma$-formula is satisfiable in
+> $\T$ iff it is satisfiable in an infinite model of $\T$.
+
+Some lemmas are then proved regarding satisfiability of closed equational
+formulas in equational models (which will be used to reason about the selected
+arrangements of shared variables between sub-theories). These lemmas and the
+*Craig Interpolation Theorem* allow proving proposition 3.8, which states the
+soundness of the above decomposition in the case where the arrangement picked
+between the shared variables of the sub-formula makes all of the variables
+dis-equal. Corollary 3.9 reduces the case of general arrangements to this
+specific case of all-disequality arrangements.
+
+This all yields proposition 3.10 (Soundness):
+
+> Given decision procedures two signature-disjoint, stably-infinite theories
+> $\T_1$ and $\T_2$, if one of the pairs $\langle \psi_1, \psi_2 \rangle$ output
+> by the non-deterministic NO-combination procedure above is such that $\psi_i$
+> is satisfiable in $\T_i$ ($i \in \{1, 2\}$), then the input formula is
+> satisfiable in $\T = \T_1 \cup \T_2$.
+
+as well as a corresponding Completeness proof, proposition 3.11:
+
+> If a formula $\phi \in sCNF(\T)$ is satisfiable in $\T$, then there exists an
+> output pair $\langle \psi_1, \psi_2 \rangle$ of the decomposition phase of the
+> above non-deterministic NO-combination procedure such that $\psi_i$ is
+> satisfiable in $\T_i$.
+
+### Conclusions and Further Developments
+
+A decsion procedure for combined first-order theories is provided, along with a
+proof of its correctness under assumptions on the component theories involved.
+Many theories of interest are not stably-infinite, but this requirement only
+seems to be a sufficient condition on theory combination, not a necessary one.
+Additionally, the signature-disjointness of the component theories can be
+restrictive, leading the authors to explore being able to add shared constant
+and function symbols.
+
+---
+- id: tinelli-harandi-nelson-oppen-proof-correctness
+  type: chapter
+  author:
+  - family: Tinelli
+    given: Cesare
+  - family: Harandi
+    given: Mehdi
+  editor:
+  - family: Baader
+    given: Frans
+  - family: Schulz
+    given: Klaus U.
+  issued:
+  - year: '1996'
+  title: A new correctness proof of the nelson-oppen combination procedure
+  container-title: 'Frontiers of combining systems: First international workshop,
+    munich, march 1996'
+  publisher: Springer Netherlands
+  publisher-place: Dordrecht
+  page: '103-119'
+  URL: http://dx.doi.org/10.1007/978-94-009-0349-4_5
+  DOI: 10.1007/978-94-009-0349-4_5
+  ISBN: '978-94-009-0349-4'
+...
