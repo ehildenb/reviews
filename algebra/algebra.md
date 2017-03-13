@@ -181,13 +181,13 @@ explicitely tell Coq how to re-associate the term before rewriting, an explicit
 match modulo the associativity of the operator can be supplied and taken into
 account by the rewriter.
 
-For efficiency, the `aac_rewite` tactic consults an OCaml oracle to produce a
+For efficiency, the `aac_rewrite` tactic consults an OCaml oracle to produce a
 substitution instance which takes into account the structural axioms. This
 substitution instance is verified by the tactic `aac_reflexivity`, which can
 check equalities modulo the axioms. Given the substitution instance, the
 standard `rewrite` is able to apply directly, and the proof procedes. The
-`aac_reflexivity` can also be used directly to decide equality between two
-terms as a standalone call.
+`aac_reflexivity` can also be used directly to decide equality between two terms
+as a standalone call.
 
 ### User Interface, Notation
 
@@ -219,12 +219,16 @@ this relation demonstrates that it is safe to reduce terms using the
 term-rewriting system then check membership in the relation. Finally, a theorem
 states that checking whether two types belong to the relation can be reduced to
 checking whether their normal forms (using the `norm` function) are equal in the
-algebra (via *Liebniz equality*). Note that the author avoids making this an
-iff, specifically so that the equational reasoning in the term-rewriting system
-must only be sound, but not necessarily complete. The paper calls this method
-the *autarkic way* because while algebraic candidates demonstrating
-membership in the relation are provided by an external oracle, the verification
-that these candidates suffice is fully checked by the theorem prover.
+algebra (via *Liebniz equality*).
+
+Note that the author avoids proving the completeness of this method specifically
+so that the oracle reasoning can use whatever matching methods it wants. The
+paper calls this method the *autarkic way* because while term candidates
+demonstrating membership in the relation of the corresponding types are provided
+by an external untrusted oracle, the verification that these candidates suffice
+is fully checked by the theorem prover. In some sense, the input of term
+candidates can be thought of as "user-supplied", even though it's another
+program supplying them.
 
 Coq `Module`s are used to package information about reified terms (`Sym` for
 uninterpreted functions and `Bin` for A/AC binary operations); two environments
@@ -242,6 +246,50 @@ then performs the matching modulo A and AC. The generated candidate terms are
 then supplied to the Coq proof, which then checks that the `norm` of the terms
 are Liebniz equal, then checks that these terms imply membership in the desired
 structural relation of the original types (via `eval`).
+
+### Matching modulo AC
+
+Matching is done using a non-deterministc matching/substitution monad in OCaml.
+The top symbol of the term to match determines how processing sub-terms is
+handled; each potential way to split sub-terms is chosen based on the top-level
+structure of the current term to match. The monadic `bind` operator takes
+sub-term splits from the previous level of matching and handles backtracking for
+infeasible matching substitutions. The authors did not prove the correctness of
+this algorithm, because the returned substitutions will be validated by Coq to
+close the `aac_reflexivity` proof anyway.
+
+### Bridging the gaps
+
+Adding support for matching modulo `Unit` instances is important for usability,
+as it allows the user to avoid having to normalize terms before taking steps
+with `aac_reflexivity` or `aac_rewrite`. Packaging information about `Unit` in
+Coq requires care, as each `Unit` must be associated to exacly one binary
+operator and has to carry around the proof that it is a unit element. The
+pattern matching must also be completed to allow variables in pattern matches
+become unit elements as appropriate.
+
+Ideally, reasoing modulo A/AC would be able to happen not just at the root of a
+term, but in some sub-term. It's not enough to just try matching modulo A/AC at
+every syntactic sub-term, because a successful match may be spread among many
+different branches of an AST of A/AC operators. What's needed is *coherence
+completetion* (called *variable extension* in the paper), which enriches
+patterns to take this possibility into account. `Unit` elements complicate this
+further (especially when multiple binary operators with unit elements interact),
+as they may lead to infinite matches with these completed patterns. As it
+suffices to provide only one working substitution, this shouldn't be a problem.
+
+### Conclusions
+
+Several other tools which provide similar functionalities are described. Some of
+them are mentioned because they use similar reflective meta-level operations to
+do proofs about proof-styles. Others are mentioned because they offer reasoning
+in some specific A/AC theory. Additionally, some dedicated computer algebra
+systems are mentioned, and similar implementations in other tools are mentioned.
+
+As future extensions, they consider extensions to heterogeneous terms and
+operations (many-sorted term algebras); other theories where reflexivity is
+decidable via matching modulo axioms; and integrating with other tools (like SMT
+solvers).
 
 ---
 - id: braibant-pous-tactics-ac-reasoning-coq
