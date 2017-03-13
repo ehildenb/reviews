@@ -151,3 +151,122 @@ References
   container-title: Computational logic - essays in honor of alan robinson
   page: 257-321
 ---
+
+
+Tactics for Reasoning modulo AC in Coq - Baibant Pous - 2011
+============================================================
+
+Abstract
+--------
+
+We present a set of tools for rewriting modulo associativity and commutativity
+(AC) in Coq, solving a long-standing practical problem. We use two building
+blocks: first, an extensible reflexive decision procedure for equality modulo
+AC; second, an OCaml plug-in for pattern matching modulo AC. We handle
+associative only operations, neutral elements, uninterpreted function symbols,
+and user-defined equivalence relations. By relying on type-classes for the
+reification phase, we can infer these properties automatically, so that
+end-users do not need to specify which operation is A or AC, or which constant
+is a neutral element.
+
+Summary
+-------
+
+Hand-written proofs skip many reasoning steps that mechanical proof checkers
+must make explicit; one common example is matching modulo structural axioms such
+as associativity, commutivity, and unit elements. For example, in a proof, you
+may need to rewrite terms in the proof state, but the rewrites will only apply
+modulo the associativity of a specified operator. Instead of having to
+explicitely tell Coq how to re-associate the term before rewriting, an explicit
+match modulo the associativity of the operator can be supplied and taken into
+account by the rewriter.
+
+For efficiency, the `aac_rewite` tactic consults an OCaml oracle to produce a
+substitution instance which takes into account the structural axioms. This
+substitution instance is verified by the tactic `aac_reflexivity`, which can
+check equalities modulo the axioms. Given the substitution instance, the
+standard `rewrite` is able to apply directly, and the proof procedes. The
+`aac_reflexivity` can also be used directly to decide equality between two
+terms as a standalone call.
+
+### User Interface, Notation
+
+A user can declare their operators, then make them instances of the Coq
+type-classes `Associative`, `Commutative`, and `Unit` to declare the appropriate
+structural axioms for them. The classes are parametric over a binary relation
+which the operators have structural axioms with respect to; if this relation is
+instantiated with Leibniz equality, the result is the standard notion of term
+equality modulo structural axioms. When multiple substitutions are possible, the
+user can list them and then use `aac_rewrite` with the appropriate options to
+select the correct one.
+
+An example of a proof using these tactics is supplied.
+
+### Deciding equality modulo AC
+
+`aac_reflexivity`, which decides equality modulo AAC, is defined using a
+*two-level* approach [@barth-ruys-barendregt-two-level-lean-proof-checking]. An
+inductive type is used to specify the *syntax* of a language and a
+term-rewriting system is used to provide a quotient algebra over the inductive
+type, thus giving *semantics* to some of the operators (see *congruence-types*,
+[@barthe-geuvers-congruence-types]).
+
+A conversion function (`eval`) between the algebra defined by the term-rewriting
+system and the inductive type is supplied. To take advantage of the algebraic
+reasoning, a relation over the inductive type axiomatizing the desired
+relation of types is supplied. A lemma stating that conversion commutes with
+this relation demonstrates that it is safe to reduce terms using the
+term-rewriting system then check membership in the relation. Finally, a theorem
+states that checking whether two types belong to the relation can be reduced to
+checking whether their normal forms (using the `norm` function) are equal in the
+algebra (via *Liebniz equality*). Note that the author avoids making this an
+iff, specifically so that the equational reasoning in the term-rewriting system
+must only be sound, but not necessarily complete. The paper calls this method
+the *autarkic way* because while algebraic candidates demonstrating
+membership in the relation are provided by an external oracle, the verification
+that these candidates suffice is fully checked by the theorem prover.
+
+Coq `Module`s are used to package information about reified terms (`Sym` for
+uninterpreted functions and `Bin` for A/AC binary operations); two environments
+`e_sym : idx -> Sym.pack X R.` and `e_bin : idx -> Bin.pack X R.` provide total
+maps from identifiers into these packages. These packages contain information
+about the arity of each symbol along with proofs that these symbols satisfy the
+structural axioms. A normalization function (written in Coq) then takes terms
+built of operators from these environments and canonicalizes them.
+
+The final step is to actually generate the reified terms which Coq will then
+normalize and check that these are a proof of membership in the desired
+relation. This is performed by an OCaml oracle which reads information about
+which operators are in the `Associative`, `Commutative`, and `Unit` type-classes
+then performs the matching modulo A and AC. The generated candidate terms are
+then supplied to the Coq proof, which then checks that the `norm` of the terms
+are Liebniz equal, then checks that these terms imply membership in the desired
+structural relation of the original types (via `eval`).
+
+---
+- id: braibant-pous-tactics-ac-reasoning-coq
+  type: chapter
+  author:
+  - family: Braibant
+    given: Thomas
+  - family: Pous
+    given: Damien
+  editor:
+  - family: Jouannaud
+    given: Jean-Pierre
+  - family: Shao
+    given: Zhong
+  issued:
+  - year: '2011'
+  title: Tactics for reasoning modulo ac in coq
+  container-title: 'Certified programs and proofs: First international conference,
+    cpp 2011, kenting, taiwan, december 7-9, 2011. proceedings'
+  publisher: Springer Berlin Heidelberg
+  publisher-place: Berlin, Heidelberg
+  page: '167-182'
+  URL: http://dx.doi.org/10.1007/978-3-642-25379-9_14
+  DOI: 10.1007/978-3-642-25379-9_14
+  ISBN: '978-3-642-25379-9'
+...
+
+
