@@ -152,7 +152,6 @@ References
   page: 257-321
 ---
 
-
 Tactics for Reasoning modulo AC in Coq - Baibant Pous - 2011
 ============================================================
 
@@ -315,6 +314,50 @@ solvers).
   URL: http://dx.doi.org/10.1007/978-3-642-25379-9_14
   DOI: 10.1007/978-3-642-25379-9_14
   ISBN: '978-3-642-25379-9'
+...
+
+Equational Formulas and Pattern Operations in Initial Order-Sorted Algebras - Meseguer Skeirik - 2017
+=====================================================================================================
+
+Abstract
+--------
+
+A *pattern* $t$, i.e., a term possibly with variables, denotes the set
+(language) $[\![ t ]\!]$ of all its ground instances. In an untyped
+setting, symbolic operations on finite sets of patterns can represent Boolean
+operations on languages. But for the more expressive patterns needed in
+declarative languages supporting rich type disciplines such as subtype
+polymorphism, untyped pattern operations and algorithms break down. We show how
+they can be properly defined by means of a signature transformation
+$\varSigma \mapsto \varSigma^\#$ that enriches the types of $\varSigma$. We also
+show that this transformation allows a systematic reduction of the first-order
+logic properties of an initial order-sorted algebra supporting
+subtype-polymorphic functions to equivalent properties of an initial many-sorted
+(i.e., simply typed) algebra. This yields a new, simple proof of the known
+decidability of the first-order theory of an initial order-sorted algebra.
+
+---
+- id: meseguer-skeirik-order-sorted-pattern-operations
+  type: chapter
+  author:
+  - family: Meseguer
+    given: José
+  - family: Skeirik
+    given: Stephen
+  editor:
+  - family: Falaschi
+    given: Moreno
+  issued:
+  - year: '2015'
+  title: Equational formulas and pattern operations in initial order-sorted algebras
+  container-title: 'Logic-based program synthesis and transformation: 25th international
+    symposium, lopstr 2015, siena, italy, july 13-15, 2015. revised selected papers'
+  publisher: Springer International Publishing
+  publisher-place: Cham
+  page: '36-53'
+  URL: http://dx.doi.org/10.1007/978-3-319-27436-2_3
+  DOI: 10.1007/978-3-319-27436-2_3
+  ISBN: '978-3-319-27436-2'
 ...
 
 
