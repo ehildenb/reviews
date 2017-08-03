@@ -309,6 +309,144 @@ Higher-order Logic:
     second-order logic restricts the higher-order variables to monadic
     predicates (unary predicates), which makes it decidable.
 
+Combining Decision Procedures - Manna Zarba - 2003
+==================================================
+
+Abstract
+--------
+
+We give a detailed survey of the current state-of-the-art methods for combining decision procedures.
+We review the Nelson-Oppen combination method, Shostak method, and some very recent results on the combination of theories over non-disjoint signatures.
+
+Summary
+-------
+
+Decision procedures have enabled program analysis and verification tools to make powerful advances in recent years.
+Domain-specific decision procedures are advanced enough to be used efficiently for reasoning about a specific problem, but are not useful outside that domain.
+Nelson-Oppen combination (and the more specific Shostak combination) allow us to combine decision procedures under some assumptions about the underlying theories of each decision procedure.
+Both methods require that the signatures of the individual theories be disjoint, a restriction that this paper explores removing.
+
+### Preliminaries
+
+The syntax and semantics of order-sorted theories is provided, similar in style to the presentations given in papers by Meseguer.
+Order-sorted models (algebras in the case of equational theories) are discussed, as well as order-sorted morphisms (including isomorphisms).
+The notions of $T$-(un)satisfiability and $T$-validity are developed, allowing them to state what a **decision problem** and **decision procedure** are for a class of first-order formulas.
+Several theories are also provided, including $T_\mathbb{E}$ (theory of equality/uninterpreted functions), $T_\mathbb{Z}$ (Presburger arithmetic), $T_\mathbb{R}$ (theory of reals), $T_\mathbb{L}$ (parameterized lists), and $T_\mathbb{A}$ (parameterized arrays).
+
+### Nelson-Opeen (non-deterministic)
+
+The nondeterministic version of Nelson-Oppen combination is presented in this section.
+We will be restricting ourselves to deciding satisfiability of quantifier-free formulas from a set of stably infinite theories with disjoint signatures.
+A theory is **stably infinite** if every satisfiable formula is also satisfiable in a model with an infinite domain.
+Theorem 1 shows that the theory $T_\mathbb{E}$ is stably infinite.
+
+The procedure for Nelson-Oppen combination of two signatures (given the above restrictions) is broken into two phases:
+
+1.  Variable Abstraction: Any non-variable subterm in a formula is replaced with a fresh variable (and an equality between the fresh variable and the subterm is added).
+    Any disequalities between non-variable terms are broken into a disequality of variables with the variables set equal to the original terms.
+    Now each literal in the formula is from only one of the signatures; partition the literals by which theory they are from (literals only involving variables may go into either partition).
+
+2.  Check: Between the shared variables of the partition of literals, generate all possible equivalence relations.
+    For each generated equivalence relation, check if that equivalence relation (interpreted as FO-equality) is satisfiable with the partition of formula from that theory.
+    If any equivalence relation is satisfiable with both theories, then *sat*, else *unsat*.
+
+Several examples of the non-deterministic Nelson-Oppen decision procedure are provided, including one where the procedure is shown to break if one of the theories is not stably infinite.
+
+In arguing for the correctness of this procedure, several theorems are developed.
+For all theorems, assume two theories $(\Sigma_1, T_1)$ and $(\Sigma_2, T_2)$ with $\Sigma_1 \cap \Sigma_2 = \varnothing$.
+Fix $\Phi_1$ and $\Phi_2$ as sets of formula from $\Sigma_1$ and $\Sigma_2$, respectively.
+Theorem 2 shows that $\Phi_1 \cup \Phi_2$ is satisfiable iff each $\Phi_i$ has a model $\mathcal{M}_i$, $|\mathcal{M}_1| = |\mathcal{M}_2|$, and the equivalence relation of the shared variables in the $\mathcal{M}_i$ agree.
+Theorem 3 shows that $\Gamma_1 \cup \Gamma_2$ is $T_1 \cup T_2$ satisfiable iff there is an equivalence relation between the shared variables of $\Gamma_i$ which is satisfiable in each of the $T_i \cup \Gamma_i$.
+Theorem 4 shows that if $T_1$ and $T_2$ each are stably infinite with disjoint signatures, and there are decision procedures for $T_i$, then Nelson-Oppen gives a decision procedure for $T_1 \cup T_2$.
+Theorem 5 generalizes Theorem 4 to $n$ theories.
+
+The complexity of non-deterministic Nelson-Oppen is discussed, and it's argued that it quickly becomes impractical to use this method.
+In addition, it's clarified that stable infiniteness is a **sufficient** condition, but not a **necessary** one.
+
+### Nelson-Oppen (deterministic)
+
+A deterministic version of Nelson-Oppen is presented which avoids the impracticallity of the non-deterministic version.
+The first phase (Variable Abstraction) is kept, but the non-determinstic Check phase is replaced by a set of inference rules for deducing *sat* or *unsat*.
+In this inference system, the set of partitioned formula are kept in a tuple $\langle \Gamma_1, \Gamma_2, E \rangle$, where $E$ is the current equivalence relation on shared variables.
+
+-   Contradiction Rule: If $\Gamma_i \cup E$ is $T_i$ *unsat*, return **false**.
+-   Equality Propogation: If $T_i \cup \Gamma_i \cup E \models x = y$, deduce $\langle \Gamma_1, \Gamma_2, E \cup \{ x = y \} \rangle$.
+-   Case Analysis: If $T_i \cup \Gamma_i \cup E \models \lor_{i \in 1..n} x_i = y_i$, check if one of $\langle \Gamma_1 , \Gamma_2 , E \cup \{ x_i = x_j \} \rangle$ is *sat*.
+
+Several examples of using this inference system are provided, including one where *sat* is deduced and another where *unsat* is deduced.
+
+An argument for the correctness of this inference system is supplied, with proofs that it is terminating and preserves satisfiability of the whole system.
+Lemma 1 shows that the inference system is terminating.
+Lemma 2 shows that for each inference rule, the initial state is satisfiable iff one of the final states is so.
+Lemma 3 shows that if no inference rules can be applied and we have not reached **false**, then the system is satisfiable.
+Theorem 8 shows that under the assumptions of $T_i$ stably infinite and of disjoint signatures, this deterministic Nelson-Oppen provides a decision procedure for quantifier-free formula from $T_1 \cup T_2$.
+
+A **convex** theore is defined as one where for every disjunct $\lor_{i \in 1..n} x_i = y_i$, $T \cup \Gamma \models \lor_{i \in 1..n}$ iff $T \cup \Gamma \models x_j = y_j$ for some $j \in 1..n$.
+Theorem 9 shows that for $T_1$ and $T_2$ stably infinite, convex, and of disjoint signatures, the Case Analysis inference rule is no longer needed to achieve a decision procedure in $T_1 \cup T_2$.
+Theorem 10 shows that under these same assumptions, if the component decision procedures for $T_i$ are polynomial time, then so is the combined procedure.
+Theroem 11 shows that if $T$ is convex and has models with more than one element, it is also stably infinite.
+
+### Shostak
+
+The notion of a **Shostak Theory** is developed and integrated into the wider Nelson-Oppen combination infrastructure.
+
+A theory $T$ is **solvable** if it has a **solver**; a solver for a theory $T$ is a function $solve$ such that:
+
+-   If $T \models s = t$ then $solve(s = t) = true$.
+-   If $T \models s \neq t$ then $solve(s = t) = false$.
+-   Otherwise, return a substitution $\sigma = \{ x_1 / t_1, ... x_n / t_n \}$ (with variables in $t_j$ away from $x_{1..n}$), with $s = t \iff \exists y_1 ... y_k . \land_{i \in 1..n} x_i = t_i$ $T$-valid.
+
+Several examples of theories with/without solvers are presented which give an intuitive feel for what a *solvable* theory is like.
+
+A **Shostak Theory** is defined as a theory $T$ that:
+
+-   Does not contain predicate symbols in its signature.
+-   Is convex.
+-   Is solvable.
+
+Given a Shostak Theory, a simplified inference system can be used for decidability:
+
+-   Contradiction 1: $\Gamma \cup \{ s \neq t \}$ deduces **false** if $solve(s = t) = true$.
+-   Contradiction 1: $\Gamma \cup \{ s =    t \}$ deduces **false** if $solve(s = t) = false$.
+-   Equality Elimination: $\Gamma \cup \{ s = t \}$ deduces $\Gamma \sigma$ if $solve(s = t) = \sigma$.
+
+This procedure removes equalities from the given $\Gamma$ (via substituting) until either **false** is deduced or what is left is only dis-equalities.
+Lemma 4 shows that this inference system is terminating.
+Lemma 5 shows that each inference rule preserves satisfiability.
+Lemma 6 shows that if **false** is not deduced after running to completion, the final conjunction is satisfiable.
+Theorem 12 shows that if $T$ is a Shostak theory, then quantifier-free satisfiability in $T$ is decidable.
+
+Integration into Nelson-Oppen is shown, including correctness results and efficiency gains.
+Theorem 13 shows that given any number of disjoint-signature stably infinite theories where a subset are Shostak theories (and the remainder are decidable), decidability in the union theory is decidable.
+Theorem 14 shows that given any number of disjoint-signature Shostak theories, combining with $T_\mathbb{E}$ is still decidable.
+
+Given that some of the theories in a set are Shostak, one can use this fact to deduce implied equalities more easily (which is demonstrated via several examples).
+The notion of solver is generalized to operate on a set of equalities, producing a substitution out of the entire set which is substituted back into the remainder of the formula.
+
+---
+- id: manna-zarba-combining-decision-procedures
+  type: chapter
+  author:
+  - family: Manna
+    given:  Zohar
+  - family: Zarba
+    given:  Calogero G.
+  editor:
+  - family: Aichernig
+    given:  Bernhard K.
+  - family: Maibaum
+    given:  Tom
+  issued:
+  - year: 2003
+  title: Combining Decision Procedures
+  container-title: Formal Methods at the Crossroads. From Panacea to Foundational Support
+  publisher: Springer Berlin Heidelberg
+  page: '381-422'
+  ISBN: '978-3-540-40007-3'
+  DOI:  '10.1007/978-3-540-40007-3_24'
+  URL:  'https://doi.org/10.1007/978-3-540-40007-3_24'
+...
+
 A New Correctness Proof of the Nelson-Oppen Combination Procedure - Tinelli Harandi - 1996
 ==========================================================================================
 
