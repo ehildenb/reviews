@@ -266,3 +266,83 @@ $\Vect{Cont}$.
     publisher-place: New York, NY, USA
     page: '238-252'
 ---
+
+Natural-Semantics-Based Abstract Interpretation (Preliminary Version) - Schmidt - 1995
+======================================================================================
+
+Abstract 
+---------
+
+The original formulation of abstract interpretation (a.i.) [5] demonstrated
+clearly that a.i. is a formal-semantics-based methodology for deriving a
+provably correct, convergent, canonical iterative data flow analysis from a
+standard semantics of a programming language. But subsequent research in
+a.i. has obscured the methodology of the topic. For example, the recent slew of
+papers on closures analysis [2, 3, 17, 18, 21, 37, 39, 40, 41, 42, 43] mix
+implementation optimizations with specifications and leave unclear exactly what
+closures analysis is. In this paper, we reexamine the principles of a.i. and
+reformulate the topic on a foundation of coinductively defined natural
+semantics. We aim to demonstrate that the intensional and compositional aspects
+of natural semantics make it an ideal vehicle for formulating abstract
+interpretations of problems while preserving the essential characteristics of
+the subject.
+
+Summary
+-------
+
+This paper focuses on abstract interpretation for a language defined using
+a coinductively defined natural semantics (big-step semantics). They reformulate
+abstract interpretation to work with natural semantics, and show via examples
+that such a reformulation can be useful.
+
+The authors first reintroduce some of the key concepts of abstract
+interpretation and data flow analysis. They define collecting semantics as the
+the values that traversed along a flowchart's arcs. They define a data flow
+analysis as the abstract values traversed along a flowchart's arcs. Soundness of
+abstract semantics can be proved by providing a Galois connection between the
+concrete and abstract values. Next, motivatation for using natural semantics is
+provided. In short, abstract interpretation works great for flowchart programs,
+but does not generalize as nicely to structurally recursive programs.
+
+More background is provided, here defining induction and coinduction. In short,
+induction and coinduction are defined as
+
+> In order to prove a property $P$ inductively, one proves $lfp(F) \subseteq
+> P$. To do this, one must find a set $S \subseteq P$ such that $F(S) \subseteq
+> S$.
+
+> In order to prove a property $P$ coinductively, one proves $P \subseteq
+> gfp(F)$ To do this, one must find a set $S$ such that $P \subseteq S$ such
+> that $S \subseteq F(S)$.
+
+Small examples are then given to help justify these definitions. The intution is
+that the greatest fixed point of a set contains all trees in the least fixed
+point definition, as well as trees with infinite depth.
+
+A natural semantics (or big-step semantics) for a simply-typed call-by-value
+lambda calculus is provided. Environment and Value sets are defined
+coinductively (with closures included as values), and they are used to define
+the semantics of the *fix* construct. Ordering relations $\sqsubseteq_{Value}$
+and $\sqsubseteq_{Env}$ are defined.
+
+Next, natural semantics trees are defined as the set coinductively generated
+from the big-step semantics. In order to do this, machinery is needed for
+defining when one subtree is "less" than another. Then, a definition for
+translating a rule in the bigstep semantics into a recusrive equation scheme is
+provided. The authors then provide the collecting semantics of a natural
+semantics tree.
+
+Key definitions of abstract interpretation are adapted to the natural semantics
+trees. A formal relationship as a Galois is established in order to maintain
+soundness. Then, the "less than" definition for natural semantics trees is
+adapted for abstract semantics trees. This relation $t \preceq u$ holds if every
+computation sequence included in the first tree is also cointained in the
+second. With this, soundness of the abstract semantics for the lambda calculus
+is proved, by induction on the structure of an expression in lambda calculus.
+
+The paper concludes with a series of examples applying the methodology
+provided. These include a sign analysis and a closures analysis. They also
+demonstrate convergence of data flow analysis even in the context of infinite
+trees, by ensuring a *repetition node* on every path.
+
+
