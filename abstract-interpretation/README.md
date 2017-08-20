@@ -36,7 +36,7 @@ conjunction of $\hat\varphi_i$ and $\neg\hat{\varphi_i}$. This forms a complete
 lattice where the ordering is implication, the meet (greatest lower bound) is
 conjunction, and the join (least upper bound) is a weaker operator than
 disjunction such that
-$(\hat\varphi_1 \bigtriangledown \hat\varphi_2) \sqcup (\hat\varphi_2 \wedge \hat\varphi_3) = \hat\varphi_2$.
+$(\hat\varphi_1 \wedge \hat\varphi_2) \sqcup (\hat\varphi_2 \wedge \hat\varphi_3) = \hat\varphi_2$.
 
 The concretization $\gamma$ of an abstract state $\hat m$ is simply
 $\gamma(\hat m) = \hat m[\varphi_i/\hat\varphi_i]$. That is, every abstract
